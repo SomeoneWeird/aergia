@@ -22,6 +22,15 @@ export default validate({
     }, {
       test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css')
+    },
+    {
+      test: /\.scss$/,
+      loaders: [
+        'style',
+        'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+        'resolve-url',
+        'sass'
+      ]
     }]
   },
 
