@@ -53,6 +53,7 @@ let SoundHax = React.createClass({
   render() {
     return (
       <div>
+        soundhax
         progress: {this.state.progress}
       </div>
     )

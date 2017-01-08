@@ -38,7 +38,7 @@ function otherEntrypoints () {
   let out
   if (entrypoints.length > 1) {
     let points = entrypoints.map(name => {
-      return <Link to={'/entry/' + name }>{name}</Link>
+      return <Link to={{ pathname: '/selectsd', query: { returnTo: '/entry/' + name } }}>{name}</Link>
     })
     points.shift()
     out = <div>
@@ -57,15 +57,14 @@ export default class determineEntrypoint extends Component {
       <div>
         {getEntrypoints().length > 0 ? (
           <div>
-            We recommend you use <Link to={'/entry/' + getEntrypoints()[0]}>{getEntrypoints()[0]}</Link> as your exploit
+            We recommend you use <Link to={{ pathname: '/selectsd', query: { returnTo: '/entry/' + getEntrypoints()[0] } }}>{getEntrypoints()[0]}</Link> as your exploit
+            {otherEntrypoints()}
           </div>
         ) : (
           <div>
             Unfortuntely it looks like there are no exploits for your system+version at the moment!
           </div>
         )}
-
-        {otherEntrypoints()}
       </div>
     )
   }

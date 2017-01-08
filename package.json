@@ -153,6 +153,8 @@
     "webpack-validator": "^2.3.0"
   },
   "dependencies": {
+    "bytes": "^2.4.0",
+    "drivelist": "^5.0.5",
     "electron-debug": "^1.1.0",
     "font-awesome": "^4.7.0",
     "normalize.css": "^5.0.0",
