@@ -1,60 +1,86 @@
 import os from 'os'
 import path from 'path'
+import fs from 'fs'
 
 import React, { Component } from 'react';
 
 import { Link } from 'react-router';
-import semver from 'semver'
+import request from 'request'
+import requestProgress from 'request-progress'
 
 import config from '../../../config'
 
-// function downloadSoundhax () {
-//   let url = `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region}-${config.model}.m4a`
-// }
+// test code
+config.region = 'eur'
+config.model = 'n3ds'
 
-// function downloadHBSK () {
-//   let url = 'http://smealum.github.io/ninjhax2/starter.zip'
+const downloadTo = os.tmpdir()
 
-// }
-
-// function downloadOtherapp () {
-//   // ??????
-//   return Promise.resolve()
-// }
-
-// function downloadFiles () {
-//   Promise.all([
-//     downloadSoundhax(),
-//     downloadHBSK(),
-//     downloadOtherapp()
-//   ]).then(function () {
-
-//   })
-// }
+let items = {
+  soundhax: {
+    url: `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region.toLowerCase()}-${config.model}.m4a?raw=true`,
+    filename: 'soundhax.m4a'
+  },
+  hbsk: {
+    url: 'http://smealum.github.io/ninjhax2/starter.zip',
+    filename: 'starter.zip'
+  }
+}
 
 let SoundHax = React.createClass({
   getInitialState() {
     return {
-      progress: 0
+      downloads: {
+        soundhax: 0,
+        hbsk: 0,
+        otherapp: 0
+      }
     }
   },
   componentDidMount() {
-    this.progressInterval = setInterval(() => {
-      let progress = this.state.progress + 1
-      if (progress > 100) {
-        progress = 0
-      }
-      this.setState({ progress })
-    }, 300)
+    this.startDownload()
   },
-  getProgress() {
-    return this.state.progress
+  getProgress(dl) {
+    return this.state.downloads[dl]
+  },
+  download(item) {
+    console.log('downloading', item)
+    requestProgress(request(items[item].url))
+      .on('progress', (state) => {
+        this.setState({
+          ...this.state,
+          downloads: {
+            ...this.state.downloads,
+            [item]: (state.percent * 100).toFixed(2)
+          }
+        })
+      })
+      .on('end', (err) => {
+        if (err) {
+          console.error(err)
+        }
+        this.setState({
+          ...this.state,
+          downloads: {
+            ...this.state.downloads,
+            [item]: 100
+          }
+        })
+      })
+      .pipe(fs.createWriteStream(path.resolve(downloadTo, items[item].filename)))
+  },
+  startDownload() {
+    this.download('soundhax')
+    this.download('hbsk')
   },
   render() {
     return (
       <div>
-        soundhax
-        progress: {this.state.progress}
+        soundhax: {this.getProgress('soundhax')}%
+        <br/>
+        homebrew starter kit: {this.getProgress('hbsk')}%
+        <br/>
+        otherapp: {this.getProgress('otherapp')}%
       </div>
     )
   }

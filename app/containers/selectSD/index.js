@@ -22,7 +22,9 @@ let selectSD = React.createClass({
         console.error(err)
         return
       }
-      drives = drives.map(function (drive) {
+      drives = drives.filter(function (drive) {
+        return drive.system === false && drive.protected === false && drive.mountPoints.length
+      }).map(function (drive) {
         return {
           description: drive.description,
           mountPoint: drive.mountPoints[0].path,
@@ -59,6 +61,7 @@ let selectSD = React.createClass({
           </div>
         )}
         <div onClick={this.processDrives}>Refresh</div>
+        <div onClick={this.setDrive('hax')}>bypass screen</div>
       </div>
     )
   }

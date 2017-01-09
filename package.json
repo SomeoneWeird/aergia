@@ -165,6 +165,8 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
+    "request": "^2.79.0",
+    "request-progress": "^3.0.0",
     "semver": "^5.3.0",
     "source-map-support": "^0.4.8"
   },
