@@ -1,7 +1,20 @@
 section {
+	height: calc(100% - 2rem);
 	padding: 1rem;
+	position: relative;
 
 	.title{
 		margin: 0;
+	}
+
+	.navigation {
+		position: absolute;
+		bottom: 1rem;
+		left: 1rem;
+		right: 1rem;
+
+		a:nth-child(2) {
+			float: right;
+		}
 	}
 }

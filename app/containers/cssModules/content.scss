@@ -1,0 +1,17 @@
+@import "./includes/variables.scss";
+
+a.button,
+.button {
+	display: inline-block;
+	width: auto;
+	text-align: center;
+	background: $color-java;
+	padding: .6rem 1rem;
+	color: $color-black;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		background: $color-java-light;
+	}
+}
