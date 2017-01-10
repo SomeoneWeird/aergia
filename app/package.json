@@ -1,6 +1,6 @@
 {
-  "name": "haxhelper",
-  "productName": "haxhelper",
+  "name": "aergia",
+  "productName": "aergia",
   "version": "1.0.0",
   "description": "3DS A9LH+LUMA interactive installation helper",
   "main": "./main.js",

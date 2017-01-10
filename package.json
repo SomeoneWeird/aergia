@@ -1,6 +1,6 @@
 {
-  "name": "haxhelper",
-  "productName": "haxhelper",
+  "name": "aergia",
+  "productName": "aergia",
   "version": "0.10.0",
   "description": "3DS A9LH+LUMA interactive installation helper",
   "main": "main.js",
@@ -26,8 +26,8 @@
     "cleanup": "mop -v"
   },
   "build": {
-    "productName": "HaxHelper",
-    "appId": "org.boxxen.haxhelper",
+    "productName": "aergia",
+    "appId": "org.boxxen.aergia",
     "category": "public.app-category.tools",
     "dmg": {
       "contents": [
@@ -71,7 +71,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SomeoneWeird/haxhelper.git"
+    "url": "git+https://github.com/SomeoneWeird/aergia.git"
   },
   "author": {
     "name": "Adam Brady ",
@@ -79,12 +79,12 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SomeoneWeird/haxhelper/issues"
+    "url": "https://github.com/SomeoneWeird/aergia/issues"
   },
   "keywords": [
     "3ds"
   ],
-  "homepage": "https://github.com/SomeoneWeird/haxhelper#readme",
+  "homepage": "https://github.com/SomeoneWeird/aergia#readme",
   "devDependencies": {
     "asar": "^0.12.4",
     "babel-core": "^6.21.0",
