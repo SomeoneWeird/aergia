@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
+import { ipcRenderer } from 'electron';
 import { Link, browserHistory } from 'react-router';
 import bytes from 'bytes'
-
-import Drives from 'drivelist'
 
 import config from '../../config'
 
@@ -23,20 +22,14 @@ let selectSD = React.createClass({
     }
   },
   componentDidMount() {
-    this.processDrives()
-  },
-  processDrives () {
-    Drives.list(function (err, drives) {
-      if (err) {
-        console.error(err)
-        return
-      }
+    ipcRenderer.on('driveListReply', (event, drives) => {
+      drives = JSON.parse(drives)
       drives = drives.filter(function (drive) {
         return drive.system === false && drive.protected === false && drive.mountPoints.length
       }).map(function (drive) {
         return {
           description: drive.description,
-          mountPoint: drive.mountPoints[0].path,
+          mountPoint: drive.mountpoints.length ? drive.mountpoints[0].path : 'Not mounted',
           size: bytes(drive.size)
         }
       })
@@ -44,10 +37,14 @@ let selectSD = React.createClass({
         drives
       })
     })
+    this.processDrives()
+  },
+  processDrives () {
+    ipcRenderer.send('driveList')
   },
   getDrives () {
     return this.state.drives.map(drive => {
-      return <div onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</div>
+      return <div key={drive.device} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</div>
     })
   },
   setDrive (drive) {
@@ -71,7 +68,7 @@ let selectSD = React.createClass({
             </div>
           )}
           <div onClick={this.processDrives}>Refresh</div>
-          <div onClick={this.setDrive(folder)}>bypass screen</div>
+          <div onClick={this.setDrive(folder)}>use {folder}</div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>

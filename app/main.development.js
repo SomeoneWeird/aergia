@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron';
 import otherapp from 'otherapp'
+import Drive from 'drivelist'
 
 let menu;
 let template;
@@ -9,6 +10,15 @@ ipcMain.on('otherappURL', function (event, arg) {
   let config = JSON.parse(arg)
   otherapp(config.model, `${config.version}-${config.versionPatch}`, config.region, function (url) {
     event.sender.send('otherappURLReply', url)
+  })
+})
+
+ipcMain.on('driveList', function (event, arg) {
+  Drive.list(function (err, out) {
+    if (err) {
+      throw err
+    }
+    event.sender.send('driveListReply', JSON.stringify(out))
   })
 })
 
