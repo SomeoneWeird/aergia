@@ -153,12 +153,14 @@
     "webpack-validator": "^2.3.0"
   },
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "bytes": "^2.4.0",
     "drivelist": "^5.0.5",
     "electron-debug": "^1.1.0",
     "font-awesome": "^4.7.0",
     "normalize.css": "^5.0.0",
     "otherapp": "^1.0.0",
+    "progress-stream": "^1.2.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",

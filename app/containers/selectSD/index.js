@@ -10,6 +10,12 @@ import config from '../../config'
 import section from '../cssModules/section.scss'
 import content from '../cssModules/content.scss'
 
+// hax for the moment
+let folder = require('path').resolve(require('os').tmpdir(), 'aergia')
+try {
+  require('fs').mkdirSync(folder)
+} catch (e) {}
+
 let selectSD = React.createClass({
   getInitialState() {
     return {
@@ -65,7 +71,7 @@ let selectSD = React.createClass({
             </div>
           )}
           <div onClick={this.processDrives}>Refresh</div>
-          <div onClick={this.setDrive('hax')}>bypass screen</div>
+          <div onClick={this.setDrive(folder)}>bypass screen</div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
