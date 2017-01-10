@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import config from '../../config';
 
@@ -24,7 +24,7 @@ export default class selectModel extends Component {
           <div onClick={this.setModel('o2ds')}>2DS</div>
         </div>
         <div className={section.navigation}>
-          <Link className={content.button} to="/config/home">Back</Link>
+          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
         </div>
       </section>
     )

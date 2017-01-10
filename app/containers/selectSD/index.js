@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import bytes from 'bytes'
 
 import Drives from 'drivelist'
 
 import config from '../../config'
+
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 let selectSD = React.createClass({
   getInitialState() {
@@ -49,20 +52,25 @@ let selectSD = React.createClass({
   },
   render() {
     return (
-      <div>
-        {this.getDrives().length > 0 ? (
-          <div>
-            <h3>Select which SD card you wish to use:</h3>
-            {this.getDrives()}
-          </div>
-        ) : (
-          <div>
-            Oops, can't detect any valid drives.
-          </div>
-        )}
-        <div onClick={this.processDrives}>Refresh</div>
-        <div onClick={this.setDrive('hax')}>bypass screen</div>
-      </div>
+      <section>
+        <div className={section.content}>
+          {this.getDrives().length > 0 ? (
+            <div>
+              <h3>Select which SD card you wish to use:</h3>
+              {this.getDrives()}
+            </div>
+          ) : (
+            <div>
+              Oops, can't detect any valid drives.
+            </div>
+          )}
+          <div onClick={this.processDrives}>Refresh</div>
+          <div onClick={this.setDrive('hax')}>bypass screen</div>
+        </div>
+        <div className={section.navigation}>
+          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+        </div>
+      </section>
     )
   }
 })

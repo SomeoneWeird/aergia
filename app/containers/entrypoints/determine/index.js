@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import semver from 'semver'
 
 import config from '../../../config'
+
+import section from '../../cssModules/section.scss'
+import content from '../../cssModules/content.scss'
 
 const entrypoints = {
   n3ds: {
@@ -54,18 +57,23 @@ function otherEntrypoints () {
 export default class determineEntrypoint extends Component {
   render() {
     return (
-      <div>
-        {getEntrypoints().length > 0 ? (
-          <div>
-            We recommend you use <Link to={{ pathname: '/selectsd', query: { returnTo: '/entry/' + getEntrypoints()[0] } }}>{getEntrypoints()[0]}</Link> as your exploit
-            {otherEntrypoints()}
-          </div>
-        ) : (
-          <div>
-            Unfortuntely it looks like there are no exploits for your system+version at the moment!
-          </div>
-        )}
-      </div>
+      <section>
+        <div className={section.content}>
+          {getEntrypoints().length > 0 ? (
+            <div>
+              We recommend you use <Link to={{ pathname: '/selectsd', query: { returnTo: '/entry/' + getEntrypoints()[0] } }}>{getEntrypoints()[0]}</Link> as your exploit
+              {otherEntrypoints()}
+            </div>
+          ) : (
+            <div>
+              Unfortuntely it looks like there are no exploits for your system+version at the moment!
+            </div>
+          )}
+        </div>
+        <div className={section.navigation}>
+          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+        </div>
+      </section>
     )
   }
 }

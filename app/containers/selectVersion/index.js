@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import config from '../../config';
 
@@ -22,7 +22,7 @@ export default class selectVersion extends Component {
           <div onClick={this.setVersion('11.2.0')}>11.2.0</div>
         </div>
         <div className={section.navigation}>
-          <Link className={content.button} to="/config/home">Back</Link>
+          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
         </div>
       </section>
     )

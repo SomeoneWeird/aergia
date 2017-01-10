@@ -4,11 +4,14 @@ import fs from 'fs'
 
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import request from 'request'
 import requestProgress from 'request-progress'
 
 import config from '../../../config'
+
+import section from '../../cssModules/section.scss'
+import content from '../../cssModules/content.scss'
 
 // test code
 config.region = 'eur'
@@ -75,13 +78,18 @@ let SoundHax = React.createClass({
   },
   render() {
     return (
-      <div>
-        soundhax: {this.getProgress('soundhax')}%
-        <br/>
-        homebrew starter kit: {this.getProgress('hbsk')}%
-        <br/>
-        otherapp: {this.getProgress('otherapp')}%
-      </div>
+      <section>
+        <div className={section.content}>
+          soundhax: {this.getProgress('soundhax')}%
+          <br/>
+          homebrew starter kit: {this.getProgress('hbsk')}%
+          <br/>
+          otherapp: {this.getProgress('otherapp')}%
+        </div>
+        <div className={section.navigation}>
+          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+        </div>
+      </section>
     )
   }
 })
