@@ -158,6 +158,7 @@
     "electron-debug": "^1.1.0",
     "font-awesome": "^4.7.0",
     "normalize.css": "^5.0.0",
+    "otherapp": "^1.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",

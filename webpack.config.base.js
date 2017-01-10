@@ -5,6 +5,7 @@
 import path from 'path';
 import validate from 'webpack-validator';
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import webpack from 'webpack'
 
 import {
   dependencies as externals
@@ -48,7 +49,9 @@ export default validate({
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
-  plugins: [],
+  plugins: [
+    new webpack.IgnorePlugin(/vertx/)
+  ],
 
   externals: Object.keys(externals || {})
 });

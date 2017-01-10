@@ -1,8 +1,16 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron';
+import otherapp from 'otherapp'
 
 let menu;
 let template;
 let mainWindow = null;
+
+ipcMain.on('otherappURL', function (event, arg) {
+  let config = JSON.parse(arg)
+  otherapp(config.model, `${config.version}-${config.versionPatch}`, config.region, function (url) {
+    event.sender.send('otherappURLReply', url)
+  })
+})
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support'); // eslint-disable-line

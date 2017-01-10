@@ -2,6 +2,7 @@ import os from 'os'
 import path from 'path'
 import fs from 'fs'
 
+import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 
 import { Link, browserHistory } from 'react-router';
@@ -75,6 +76,14 @@ let SoundHax = React.createClass({
   startDownload() {
     this.download('soundhax')
     this.download('hbsk')
+    ipcRenderer.on('otherappURLReply', (event, url) => {
+      items.otherapp = {
+        url,
+        filename: 'otherapp.bin'
+      }
+      this.download('otherapp')
+    })
+    ipcRenderer.send('otherappURL', JSON.stringify(config))
   },
   render() {
     return (

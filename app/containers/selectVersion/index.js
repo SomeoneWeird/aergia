@@ -18,13 +18,19 @@ export default class selectVersion extends Component {
     this.state = {
       selected: values[0]
     }
-    this.setVersion = this.setVersion.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
-  setVersion (event) {
+  componentDidMount () {
+    this.setVersion(values[0])
+  }
+  handleChange (event) {
+    this.setVersion(event.target.value)
+  }
+  setVersion (version) {
     this.setState({
-      selected: event.target.value
+      selected: version
     })
-    let t = event.target.value.split('-')
+    let t = version.split('-')
     config.version = t[0]
     config.versionPatch = t[1]
   }
@@ -41,7 +47,7 @@ export default class selectVersion extends Component {
       <section>
         <h2 className={section.title}>Select which version your DS is running. TODO: pull from hbl website</h2>
         <div className={section.content}>
-          <select value={this.state.selected} onChange={this.setVersion}>
+          <select value={this.state.selected} onChange={this.handleChange}>
             {this.getVersions()}
           </select>
         </div>
