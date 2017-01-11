@@ -10,17 +10,17 @@ import content from '../../cssModules/content.scss'
 
 const entrypoints = {
   n3ds: {
-    '<=11.2.0': [
+    '>=9.0.0 <=11.2.0': [
       'soundhax'
     ]
   },
   o3ds: {
-    '<=11.2.0': [
+    '>=9.0.0 <=11.2.0': [
       'soundhax'
     ]
   },
   o2ds: {
-    '<=11.2.0': [
+    '>=9.0.0 <=11.2.0': [
       'soundhax'
     ]
   }

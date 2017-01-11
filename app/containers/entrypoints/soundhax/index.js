@@ -18,10 +18,6 @@ import config from '../../../config'
 import section from '../../cssModules/section.scss'
 import content from '../../cssModules/content.scss'
 
-// test code
-config.region = 'eur'
-config.model = 'n3ds'
-
 const downloadTo = os.tmpdir()
 
 let items = {
