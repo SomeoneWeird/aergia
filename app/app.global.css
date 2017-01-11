@@ -12,11 +12,11 @@ body {
   overflow-y: hidden;
   letter-spacing: 1.2px;
   padding:1rem;
+  background-image: linear-gradient(45deg, rgba(32, 214, 175, .5) 10%, rgba(0, 0, 0, 0));
 }
 
 #main {
 	height: calc(100vh - 2rem);
-	background: #fff;
 }
 
 #main>div {
