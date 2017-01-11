@@ -59,7 +59,7 @@ export default class selectVersion extends Component {
   render() {
     return (
       <section>
-        <h2 className={section.title}>Select which version your DS is running. TODO: pull from hbl website</h2>
+        <h2 className={section.title}>Select which version your DS is running</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>
