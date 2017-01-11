@@ -1,4 +1,4 @@
-![aergia logo](https://raw.githubusercontent.com/SomeoneWeird/aergia/master/app/containers/cssModules/images/aergia_logo.png)
+![aergia logo](./app/containers/cssModules/images/aergia_logo.png?raw=true)
 
 Electron app for auto downloading and setting up SD cards in order to make the process of installing A9LH to your 3DS device easier.
 
