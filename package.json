@@ -154,10 +154,12 @@
   },
   "dependencies": {
     "adm-zip": "^0.4.7",
+    "async": "^2.1.4",
     "bytes": "^2.4.0",
     "drivelist": "^5.0.5",
     "electron-debug": "^1.1.0",
     "font-awesome": "^4.7.0",
+    "fs-extra": "^1.0.0",
     "normalize.css": "^5.0.0",
     "open": "0.0.5",
     "otherapp": "^1.1.0",

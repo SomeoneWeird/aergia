@@ -4,12 +4,14 @@ import fs from 'fs'
 
 import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
-
 import { Link, browserHistory } from 'react-router';
+
 import request from 'request'
 import requestProgress from 'request-progress'
 import streamProgress from 'progress-stream'
 import admZip from 'adm-zip'
+import fsextra from 'fs-extra'
+import async from 'async'
 
 import config from '../../../config'
 
@@ -30,7 +32,8 @@ let items = {
   hbsk: {
     url: 'http://smealum.github.io/ninjhax2/starter.zip',
     filename: 'starter.zip',
-    extract: true
+    extract: true,
+    extractFolderRoot: 'starter'
   }
 }
 
@@ -91,15 +94,46 @@ let SoundHax = React.createClass({
     if (itemConfig.extract) {
       let zip = new admZip(path.resolve(downloadTo, itemConfig.filename))
       // TODO: check none of these files already exist before overwrite?
-      console.log('extract', item, 'to', config.drive)
-      zip.extractAllTo(config.drive, true)
-      this.setState({
-        ...this.state,
-        copy: {
-          ...this.state.copy,
-          [item]: 100
-        }
-      })
+      zip.extractAllTo(config.drive.mountPoint, true)
+
+      if (itemConfig.extractFolderRoot) {
+        let files = []
+        fsextra.walk(path.resolve(config.drive.mountPoint, itemConfig.extractFolderRoot))
+          .on('data', function (file) {
+            files.push(file.path)
+          })
+          .on('end', function () {
+            async.each(files, function (file, done) {
+              fsextra.move(file, file.replace(itemConfig.extractFolderRoot + '/', ''), { mkdirp: true }, function (err) {
+                if (err && err.code === 'EEXIST') {
+                  // ignore
+                } else if (err) {
+                  return done(err)
+                }
+                done()
+              })
+            }, function (err) {
+              if (err) {
+                return console.error(err)
+              }
+              // remove previous dir
+              fsextra.remove(path.resolve(config.drive.mountPoint, itemConfig.extractFolderRoot))
+              fin()
+            })
+          })
+      } else {
+        fin()
+      }
+
+      const fin = () => {
+        this.setState({
+          ...this.state,
+          copy: {
+            ...this.state.copy,
+            [item]: 100
+          }
+        })
+      }
     } else {
       let stat = fs.statSync(path.resolve(downloadTo, itemConfig.filename))
       let p = streamProgress({
@@ -119,7 +153,7 @@ let SoundHax = React.createClass({
       // TODO: error handling
       fs.createReadStream(path.resolve(downloadTo, itemConfig.filename))
         .pipe(p)
-        .pipe(fs.createWriteStream(path.resolve(config.drive, itemConfig.filename)))
+        .pipe(fs.createWriteStream(path.resolve(config.drive.mountPoint, itemConfig.filename)))
     }
   },
   startDownload() {

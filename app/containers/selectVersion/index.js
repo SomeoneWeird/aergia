@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import otherapp from 'otherapp'
 
-console.log(otherapp)
-
 import config from '../../config';
 
 import section from '../cssModules/section.scss';

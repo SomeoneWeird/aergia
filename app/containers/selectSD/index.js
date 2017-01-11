@@ -25,7 +25,7 @@ let selectSD = React.createClass({
     ipcRenderer.on('driveListReply', (event, drives) => {
       drives = JSON.parse(drives)
       drives = drives.filter(function (drive) {
-        return drive.system === false && drive.protected === false && drive.mountPoints.length
+        return drive.system === false && drive.protected === false && drive.mountpoints.length
       }).map(function (drive) {
         return {
           description: drive.description,
@@ -44,7 +44,7 @@ let selectSD = React.createClass({
   },
   getDrives () {
     return this.state.drives.map(drive => {
-      return <div key={drive.device} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</div>
+      return <div key={drive.mountPoint} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</div>
     })
   },
   setDrive (drive) {
@@ -68,7 +68,7 @@ let selectSD = React.createClass({
             </div>
           )}
           <div onClick={this.processDrives}>Refresh</div>
-          <div onClick={this.setDrive(folder)}>use {folder}</div>
+          <div onClick={this.setDrive({ description: folder, mountPoint: folder })}>use {folder}</div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
