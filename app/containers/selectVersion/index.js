@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
 
 import { Link, browserHistory } from 'react-router';
+import otherapp from 'otherapp'
+
+console.log(otherapp)
 
 import config from '../../config';
 
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
-const values = [
-  '11.2.0-39',
-  '11.2.0-40'
-]
-
 export default class selectVersion extends Component {
   constructor (props) {
     super(props)
+    this.possibleValues = []
     this.state = {
-      selected: values[0]
+      selected: ''
     }
     this.handleChange = this.handleChange.bind(this)
   }
-  componentDidMount () {
-    this.setVersion(values[0])
+  componentWillMount () {
+    otherapp.versions((err, versions) => {
+      if (err) {
+        return console.error(err)
+      }
+      this.possibleValues = versions
+      this.setVersion(this.possibleValues[0])
+    })
   }
   handleChange (event) {
     this.setVersion(event.target.value)
@@ -38,18 +43,25 @@ export default class selectVersion extends Component {
     this.props.router.push('/entry/determine')
   }
   getVersions () {
-    return values.map(v => {
+    return this.possibleValues.map(v => {
       return <option key={v} value={v}>{v}</option>
     })
+  }
+  getContent () {
+    if (this.possibleValues.length)
+      return <select value={this.state.selected} onChange={this.handleChange}>
+        {this.getVersions()}
+      </select>
+    else {
+      return <div>Loading values...</div>
+    }
   }
   render() {
     return (
       <section>
         <h2 className={section.title}>Select which version your DS is running. TODO: pull from hbl website</h2>
         <div className={section.content}>
-          <select value={this.state.selected} onChange={this.handleChange}>
-            {this.getVersions()}
-          </select>
+          {this.getContent()}
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
