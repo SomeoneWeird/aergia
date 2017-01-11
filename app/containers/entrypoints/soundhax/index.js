@@ -22,7 +22,7 @@ const downloadTo = os.tmpdir()
 
 let items = {
   soundhax: {
-    url: `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region.toLowerCase()}-${config.model}.m4a?raw=true`,
+    url: null, // set at runtime
     filename: 'soundhax.m4a'
   },
   hbsk: {
@@ -153,6 +153,7 @@ let SoundHax = React.createClass({
     }
   },
   startDownload() {
+    items.soundhax.url = `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region.toLowerCase()}-${config.model}.m4a?raw=true`
     this.download('soundhax')
     this.download('hbsk')
     ipcRenderer.on('otherappURLReply', (event, url) => {
