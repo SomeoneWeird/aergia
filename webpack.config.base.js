@@ -32,6 +32,12 @@ export default validate({
         'resolve-url',
         'sass'
       ]
+    }, {
+      test: /\.(?:png|jpg|svg)$/,
+      loader: 'url-loader',
+      query: {
+        limit: 10000
+      }
     }]
   },
 
