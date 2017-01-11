@@ -5,6 +5,7 @@ import fs from 'fs'
 import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import { Circle } from 'rc-progress'
 
 import request from 'request'
 import requestProgress from 'request-progress'
@@ -17,6 +18,8 @@ import config from '../../../config'
 
 import section from '../../cssModules/section.scss'
 import content from '../../cssModules/content.scss'
+
+import styles from './index.css'
 
 const downloadTo = os.tmpdir()
 
@@ -169,17 +172,29 @@ let SoundHax = React.createClass({
     return (
       <section>
         <div className={section.content}>
-          soundhax download: {this.getDownloadProgress('soundhax')}%
+          soundhax
           <br/>
-          soundhax copy: {this.getCopyProgress('soundhax')}%
+          <Circle
+            className={styles.circle}
+            strokeWidth="6"
+            percent={this.getDownloadProgress('soundhax')}
+          />
           <br/>
-          homebrew starter kit download: {this.getDownloadProgress('hbsk')}%
+          homebrew starter kit
           <br/>
-          homebrew starter kit copy: {this.getCopyProgress('hbsk')}%
+          <Circle
+            className={styles.circle}
+            strokeWidth="6"
+            percent={this.getDownloadProgress('hbsk')}
+          />
           <br/>
-          otherapp download: {this.getDownloadProgress('otherapp')}%
+          otherapp
           <br/>
-          otherapp copy: {this.getCopyProgress('otherapp')}%
+          <Circle
+            className={styles.circle}
+            strokeWidth="6"
+            percent={this.getDownloadProgress('otherapp')}
+          />
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
