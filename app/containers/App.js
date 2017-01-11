@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from './footer';
 
 export default class App extends Component {
   props: {
@@ -9,6 +10,7 @@ export default class App extends Component {
     return (
       <div>
         {this.props.children}
+        <Footer />
       </div>
     );
   }

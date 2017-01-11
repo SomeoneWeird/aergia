@@ -1,22 +1,23 @@
 @import "~normalize.css";
-@import "~font-awesome/css/font-awesome.css";
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700');
 
 body {
   position: relative;
   color: #313131;
   height: 100vh;
-  background-color: #fff;
+  background-color: #f1f3f4;
   font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   overflow-y: hidden;
   letter-spacing: 1.2px;
   padding:1rem;
 }
 
-#root {
+#main {
 	height: calc(100vh - 2rem);
-	background: #f1f3f4;
+	background: #fff;
 }
-#root>div {
-	height: 100%;
+
+#main>div {
+  height: 100%;
 }

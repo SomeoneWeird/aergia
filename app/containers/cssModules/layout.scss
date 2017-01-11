@@ -1,0 +1,32 @@
+@import "./includes/variables.scss";
+
+footer {
+	background-color: #f1f3f4;
+	//background: red;
+	position: absolute;
+	bottom:2rem;left:0;right:0;
+	padding: 1rem;
+
+	.footerLogo {
+		text-align: right;
+		background: url('./images/aergia_logo.svg') transparent top right no-repeat;
+		height: 2rem;
+
+		span {
+			font-size: 0;
+		}
+	}
+
+	.footerLinks {
+		text-align: right;
+		margin-top: .5rem;
+
+		a {
+			color: $color-black;
+			text-transform: lowercase;
+			text-decoration: none;
+			margin-left: 1rem;
+			font-weight: 300;
+		}
+	}
+}
