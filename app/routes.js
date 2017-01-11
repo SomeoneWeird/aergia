@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './containers/App';
+import AppNotFound from './containers/AppNotFound'
 
 import HomePage from './containers/home';
 
@@ -27,5 +28,7 @@ export default (
 
     <Route path="/entry/determine" component={DetermineEntry} />
     <Route path="/entry/soundhax" component={SoundHax} />
+
+    <Route path="*" component={AppNotFound}/>
   </Route>
 );
