@@ -29,11 +29,66 @@ class Device extends Component {
   }
 }
 
+const totalSteps = 2
+const nextScreen = '/config/region'
+
 export default class selectModel extends Component {
+  constructor () {
+    super()
+    this.state = {
+      step: 1
+    }
+    this.goBack = this.goBack.bind(this)
+  }
   setModel (model) {
     return () => {
       config.model = model
-      this.props.router.push('/config/region')
+      this.goForward()
+    }
+  }
+  setXL (isXL) {
+    return () => {
+      config.XL = isXL
+      this.goForward()
+    }
+  }
+  goBack () {
+    if (this.state.step === 1) {
+      // go back
+      return browserHistory.goBack()
+    } else {
+      this.setState({
+        ...this.state,
+        step: this.state.step - 1
+      })
+    }
+  }
+  goForward () {
+    if (this.state.step === totalSteps) {
+      this.props.router.push(nextScreen)
+    } else {
+      this.setState({
+        ...this.state,
+        step: this.state.step + 1
+      })
+    }
+  }
+  getContent () {
+    switch (this.state.step) {
+      case 1: {
+        return <div>
+          <Device clickHandler={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
+          <Device clickHandler={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
+          <Device clickHandler={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
+        </div>
+      }
+      case 2: {
+        return <div>
+          is your device an XL model?
+          <div onClick={this.setXL(true)}>Yes</div>
+          <div onClick={this.setXL(false)}>No</div>
+        </div>
+      }
     }
   }
   render() {
@@ -41,12 +96,10 @@ export default class selectModel extends Component {
       <section>
         <h2 className={section.title}>Model Selection</h2>
         <div className={section.content}>
-          <Device clickHandler={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
-          <Device clickHandler={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
-          <Device clickHandler={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
+          {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <div className={content.button} onClick={this.goBack}>Back</div>
         </div>
       </section>
     )
