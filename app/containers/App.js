@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Footer from './footer';
+import Sidebar from './sidebar';
 
 export default class App extends Component {
   props: {
@@ -8,9 +8,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.children}
-        <Footer />
+      <div className="row">
+        <Sidebar />
+        <div className="appBody col-xs-10">
+          {this.props.children}
+        </div>
       </div>
     );
   }

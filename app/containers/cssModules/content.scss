@@ -5,13 +5,16 @@ a.button,
 	display: inline-block;
 	width: auto;
 	text-align: center;
-	background: $color-java;
+	text-transform: lowercase;
+	font-weight: 300;
+	background: none;
 	padding: .6rem 1rem;
 	color: $color-black;
 	text-decoration: none;
+	border: 1px solid $color-black;
 
 	&:hover,
 	&:focus {
-		background: $color-java-light;
+		background: $color-orange;
 	}
 }

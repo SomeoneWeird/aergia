@@ -158,6 +158,7 @@
     "bytes": "^2.4.0",
     "drivelist": "^5.0.5",
     "electron-debug": "^1.1.0",
+    "flexboxgrid": "^6.3.1",
     "font-awesome": "^4.7.0",
     "fs-extra": "^1.0.0",
     "halogen": "^0.2.0",

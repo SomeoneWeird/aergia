@@ -1,17 +1,17 @@
 section {
-	height: calc(100% - 90px);
-	padding: 1rem;
+	height: calc(100%);
+	padding: 25px;
 	position: relative;
 
 	.title{
 		margin: 0;
+		text-transform: uppercase;
+		font-size: 34px;
+		letter-spacing: 4px;
+		font-weight: 200;
 	}
 
 	.navigation {
-		position: absolute;
-		bottom: 2rem;
-		left: 1rem;
-		right: 1rem;
 
 		a:nth-child(2) {
 			float: right;

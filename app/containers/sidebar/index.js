@@ -10,21 +10,21 @@ import content from '../cssModules/content.scss';
 import layout from '../cssModules/layout.scss';
 
 function openGithub () {
-  open('https://github.com/SomeoneWeird/aergia')
+  open('https://github.com/SomeoneWeird/aergia');
 }
 
-export default class footer extends Component {
+export default class sidebar extends Component {
   render() {
     return (
-      <footer>
-        <div className={layout.footerLogo}>
+      <div className={layout.sidebar + " col-xs-2"}>
+        <div className={layout.sidebarLogo}>
           <span className={"visuallyhidden"}>Aergia</span>
         </div>
-        <div className={layout.footerLinks}>
+        <div className={layout.sidebarLinks}>
           <Link to="/credits">Credits</Link>
           <Link to="#" onClick={openGithub}>Github</Link>
         </div>
-      </footer>
+      </div>
     )
   }
 }

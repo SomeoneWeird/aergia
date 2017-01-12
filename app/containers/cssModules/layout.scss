@@ -1,12 +1,11 @@
 @import "./includes/variables.scss";
 
-footer {
-	//background: red;
-	position: absolute;
-	bottom:2rem;left:0;right:0;
-	padding: 1rem;
+.sidebar {
+	background: $color-orange;
+	height: 100vh;
+	padding: 25px;
 
-	.footerLogo {
+	.sidebarLogo {
 		text-align: right;
 		background: url('./images/aergia_logo.svg') transparent top right no-repeat;
 		height: 2rem;
@@ -16,7 +15,7 @@ footer {
 		}
 	}
 
-	.footerLinks {
+	.sidebarLinks {
 		text-align: right;
 		margin-top: .5rem;
 
