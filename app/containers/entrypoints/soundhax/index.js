@@ -90,14 +90,15 @@ let SoundHax = React.createClass({
       ...this.state,
       downloading: 'Homebrew Starter Kit'
     })
-    this.downloadFile('starter.zip', 'http://smealum.github.io/ninjhax2/starter.zip', (err) => {
+    const zipPath = path.resolve(config.drive.mountPoint, 'starter.zip')
+    this.downloadFile(zipPath, 'http://smealum.github.io/ninjhax2/starter.zip', (err) => {
       if (err) {
         return console.error('Error downloading starter.zip...', err)
       }
 
-      console.log('unzipping', path.resolve(config.drive.mountPoint, 'starter.zip'))
+      console.log('unzipping', zipPath)
 
-      let zip = new admZip(path.resolve(config.drive.mountPoint, 'starter.zip'))
+      let zip = new admZip(zipPath)
 
       // TODO: check none of these files already exist before overwrite?
       zip.extractAllTo(config.drive.mountPoint, true)
@@ -109,7 +110,7 @@ let SoundHax = React.createClass({
         })
         .on('end', () => {
           async.each(files, function (file, done) {
-            fsextra.move(file, file.replace(config.drive.mountPoint + '/', ''), { mkdirp: true }, function (err) {
+            fsextra.move(file, file.replace('starter/', ''), { mkdirp: true }, function (err) {
               if (err && err.code === 'EEXIST') {
                 // ignore
               } else if (err) {
@@ -121,7 +122,9 @@ let SoundHax = React.createClass({
             if (err) {
               return console.error(err)
             }
-            // remove previous dir
+
+            // remove previous zip + dir
+            fsextra.remove(zipPath)
             fsextra.remove(path.resolve(config.drive.mountPoint, 'starter'))
 
             this.setState({
