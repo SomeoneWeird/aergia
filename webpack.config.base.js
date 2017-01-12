@@ -33,7 +33,7 @@ export default validate({
         'sass'
       ]
     }, {
-      test: /\.(?:png|jpg|svg)$/,
+      test: /\.(?:png|jpg)$/,
       loader: 'url-loader',
       query: {
         limit: 10000
