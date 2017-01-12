@@ -9,7 +9,6 @@ import { ScaleLoader } from 'halogen'
 
 import request from 'request'
 import requestProgress from 'request-progress'
-import streamProgress from 'progress-stream'
 import admZip from 'adm-zip'
 import fsextra from 'fs-extra'
 import async from 'async'
