@@ -135,20 +135,26 @@ let SoundHax = React.createClass({
         })
     })
   },
-  getText () {
+  getContent () {
     if (this.state.downloading === null) {
       return <div>Loading...</div>
     } else if (this.state.finished === true) {
-      return <div>Finished...</div>
+      return <div>
+        Finished... click next
+      </div>
     } else {
-      return <div>Downloading {this.state.downloading} ({this.state.progress}%)</div>
+      return <div>
+        <ScaleLoader />
+        Downloading {this.state.downloading} ({this.state.progress}%)
+      </div>
     }
   },
-  getContent () {
-    return <div>
-      <ScaleLoader />
-      {this.getText()}
-    </div>
+  next() {
+    if (this.state.finished) {
+      this.props.router.push('/decrypt9')
+    } else {
+      // do nothing if not finished...
+    }
   },
   render() {
     return (
@@ -158,6 +164,7 @@ let SoundHax = React.createClass({
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <div className={content.button} onClick={this.next}>Next</div>
         </div>
       </section>
     )

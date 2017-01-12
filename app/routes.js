@@ -15,6 +15,8 @@ import SelectVersion from './containers/selectVersion'
 import DetermineEntry from './containers/entrypoints/determine'
 import SoundHaxStart from './containers/entrypoints/soundhax/index'
 
+import Decrypt9 from './containers/decrypt9'
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
@@ -27,6 +29,8 @@ export default (
 
     <Route path="/entry/determine" component={DetermineEntry} />
     <Route path="/entry/soundhax/start" component={SoundHaxStart} />
+
+    <Route path="/decrypt9" component={Decrypt9} />
 
     <Route path="*" component={AppNotFound}/>
   </Route>
