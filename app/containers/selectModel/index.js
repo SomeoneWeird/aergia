@@ -15,6 +15,20 @@ const images = {
   n3DS: require('./images/new3dsxl.png')
 }
 
+class Device extends Component {
+  constructor (props) {
+    super(props)
+  }
+  render () {
+    return (
+      <section>
+        <div onClick={this.props.clickHandler}>{this.props.name}</div>
+        <img onClick={this.props.clickHandler} className={styles.device} src={this.props.image} />
+      </section>
+    )
+  }
+}
+
 export default class selectModel extends Component {
   setModel (model) {
     return () => {
@@ -27,12 +41,9 @@ export default class selectModel extends Component {
       <section>
         <h2 className={section.title}>Model Selection</h2>
         <div className={section.content}>
-          <div onClick={this.setModel('n3ds')}>New 3DS</div>
-          <img onClick={this.setModel('n3ds')} className={styles.device} src={images.n3DS} />
-          <div onClick={this.setModel('o3ds')}>Old 3DS</div>
-          <img onClick={this.setModel('o3ds')} className={styles.device} src={images.o3DS} />
-          <div onClick={this.setModel('o2ds')}>2DS</div>
-          <img onClick={this.setModel('o2ds')} className={styles.device} src={images.twoDS} />
+          <Device clickHandler={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
+          <Device clickHandler={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
+          <Device clickHandler={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>

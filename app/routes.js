@@ -14,7 +14,7 @@ import SelectRegion from './containers/selectRegion'
 import SelectVersion from './containers/selectVersion'
 
 import DetermineEntry from './containers/entrypoints/determine'
-import SoundHax from './containers/entrypoints/soundhax'
+import SoundHaxStart from './containers/entrypoints/soundhax/index'
 
 export default (
   <Route path="/" component={App}>
@@ -27,7 +27,7 @@ export default (
     <Route path="/selectsd" component={SelectSD} />
 
     <Route path="/entry/determine" component={DetermineEntry} />
-    <Route path="/entry/soundhax" component={SoundHax} />
+    <Route path="/entry/soundhax/start" component={SoundHaxStart} />
 
     <Route path="*" component={AppNotFound}/>
   </Route>
