@@ -49,7 +49,7 @@ let selectSD = React.createClass({
   },
   getDrives () {
     return this.state.drives.map(drive => {
-      return <div key={drive.mountPoint} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</div>
+      return <li key={drive.mountPoint} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</li>
     })
   },
   setDrive (drive) {
@@ -64,7 +64,9 @@ let selectSD = React.createClass({
     if (drives.length) {
       return <div>
           <h3>Select which SD card you wish to use:</h3>
-          {drives}
+          <ul>
+            {drives}
+          </ul>
           <div onClick={this.processDrives}>Refresh</div>
         </div>
     } else {
