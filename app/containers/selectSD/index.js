@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { ipcRenderer } from 'electron';
 import { Link, browserHistory } from 'react-router';
+import { ScaleLoader } from 'halogen'
+
 import bytes from 'bytes'
 
 import config from '../../config'
@@ -18,7 +20,8 @@ try {
 let selectSD = React.createClass({
   getInitialState() {
     return {
-      drives: []
+      drives: [],
+      loaded: false
     }
   },
   componentDidMount() {
@@ -34,6 +37,8 @@ let selectSD = React.createClass({
         }
       })
       this.setState({
+        ...this.state,
+        loaded: true,
         drives
       })
     })
@@ -53,22 +58,37 @@ let selectSD = React.createClass({
       this.props.router.push(this.props.location.query.returnTo)
     }
   },
+  getContent () {
+    let drives = this.getDrives()
+
+    if (drives.length) {
+      return <div>
+          <h3>Select which SD card you wish to use:</h3>
+          {drives}
+          <div onClick={this.processDrives}>Refresh</div>
+        </div>
+    } else {
+      if (this.state.loaded) {
+        return <div>
+          Oops, can't detect any valid drives.
+          <div onClick={this.processDrives}>Refresh</div>
+        </div>
+      } else {
+        return <div>
+          <ScaleLoader color="#000000" width="20px" height="120px" />
+          Loading drives...
+        </div>
+      }
+    }
+  },
   render() {
     return (
       <section>
         <div className={section.content}>
-          {this.getDrives().length > 0 ? (
-            <div>
-              <h3>Select which SD card you wish to use:</h3>
-              {this.getDrives()}
-            </div>
-          ) : (
-            <div>
-              Oops, can't detect any valid drives.
-            </div>
-          )}
-          <div onClick={this.processDrives}>Refresh</div>
-          <div onClick={this.setDrive({ description: folder, mountPoint: folder })}>use {folder}</div>
+          {this.getContent()}
+          <br />
+          <br />
+          <div onClick={this.setDrive({ description: folder, mountPoint: folder })}>hacks: use {folder}</div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
