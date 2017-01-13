@@ -17,6 +17,10 @@ import SoundHaxStart from './containers/entrypoints/soundhax/index'
 
 import Decrypt9 from './containers/decrypt9'
 
+import ParentalControls from './containers/parentalControls'
+import CheckWifi from './containers/checkWifi'
+import TwoDSBrickWarning from './containers/2dsbrickwarning'
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
@@ -31,6 +35,10 @@ export default (
     <Route path="/entry/soundhax/start" component={SoundHaxStart} />
 
     <Route path="/decrypt9" component={Decrypt9} />
+
+    <Route path="/checkParentalControls" component={ParentalControls} />
+    <Route path="/checkWifi" component={CheckWifi} />
+    <Route path="/2dsbrickwarning" component={TwoDSBrickWarning} />
 
     <Route path="*" component={AppNotFound}/>
   </Route>

@@ -137,7 +137,7 @@ let Decrypt9 = React.createClass({
   },
   next() {
     if (this.state.finished) {
-      this.props.router.push('/??')
+      this.props.router.push('/checkParentalControls')
     } else {
       // do nothing if not finished...
     }
