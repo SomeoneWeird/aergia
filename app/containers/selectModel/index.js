@@ -42,6 +42,19 @@ export default class selectModel extends Component {
   setModel (model) {
     return () => {
       config.model = model
+
+      if (model === 'o2ds') {
+        // Skip next screen if device is a 2DS
+        // they don't have XL models
+        config.XL = false
+        return this.setState({
+          ...this.state,
+          step: this.state.step + 1
+        }, function () {
+          this.goForward()
+        })
+      }
+
       this.goForward()
     }
   }
@@ -83,7 +96,7 @@ export default class selectModel extends Component {
       }
       case 2: {
         return <div>
-          is your device an XL model?
+          Is your device an XL model?
           <div onClick={this.setXL(true)}>Yes</div>
           <div onClick={this.setXL(false)}>No</div>
         </div>
