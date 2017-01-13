@@ -7,13 +7,12 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
-import styles from './index.css'
 
 const flags = {
-  usa: require('./images/usa.png'),
+  usa: require('./images/usa.jpg'),
   eur: require('./images/eur.jpg'),
-  jpn: require('./images/jpn.png'),
-  kor: require('./images/kor.png')
+  jpn: require('./images/jpn.jpg'),
+  kor: require('./images/kor.jpg')
 }
 
 export default class selectRegion extends Component {
@@ -27,11 +26,19 @@ export default class selectRegion extends Component {
     return (
       <section>
         <h2 className={section.title}>Select which region your DS is</h2>
-        <div className={section.content}>
-          <img className={styles.flag} onClick={this.setRegion('USA')} src={flags.usa} />
-          <img className={styles.flag} onClick={this.setRegion('EUR')} src={flags.eur} />
-          <img className={styles.flag} onClick={this.setRegion('JPN')} src={flags.jpn} />
-          <img className={styles.flag} onClick={this.setRegion('KOR')} src={flags.kor} />
+        <div className="row">
+          <div className={section.flagItem + " col-xs-6"}>
+            <img onClick={this.setRegion('USA')} src={flags.usa} />
+          </div>
+          <div className={section.flagItem + " col-xs-6"}>
+            <img onClick={this.setRegion('EUR')} src={flags.eur} />
+          </div>
+          <div className={section.flagItem + " col-xs-6"}>
+            <img onClick={this.setRegion('JPN')} src={flags.jpn} />
+          </div>
+          <div className={section.flagItem + " col-xs-6"}>
+            <img onClick={this.setRegion('KOR')} src={flags.kor} />
+          </div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
