@@ -36,14 +36,16 @@ let Decrypt9 = React.createClass({
     }
     this.downloadDecrypt9WIP()
   },
-  downloadFile (filename, url, dlToDrive, done) {
-    this.setState({
-      ...this.state,
-      progress: 0
-    })
+  downloadFile (filename, url, dlToDrive = false, done) {
     console.log('downloading to', path.resolve(config.drive.mountPoint, filename))
 
-    const pathTo = path.resolve(dlToDrive ? config.drive.mountPoint : os.tmpDir(), filename)
+    let pathTo = path.resolve(os.tmpDir(), filename)
+
+    if (dlToDrive === true) {
+      pathTo = path.resolve(config.drive.mountPoint, filename)
+    } else if (typeof dlToDrive === 'string') {
+      pathTo = path.resolve(config.drive.mountPoint, dlToDrive, filename)
+    }
 
     requestProgress(request(url))
       .on('progress', (state) => {
@@ -67,7 +69,8 @@ let Decrypt9 = React.createClass({
   downloadDecrypt9WIP () {
     this.setState({
       ...this.state,
-      downloading: 'Decrypt9'
+      downloading: 'Decrypt9',
+      progress: 0
     })
     const url = 'https://github.com/d0k3/Decrypt9WIP/releases/download/20161113/Decrypt9WIP-20161113-135126.zip'
     this.downloadFile('decrypt9.zip', url, false, (err) => {
@@ -77,28 +80,67 @@ let Decrypt9 = React.createClass({
 
       let zip = new admZip(path.resolve(os.tmpDir(), 'decrypt9.zip'))
       zip.extractAllTo(os.tmpDir(), true)
-      fsextra.move(path.resolve(os.tmpDir(), 'Decrypt9WIP.bin'), path.resolve(config.drive.mountPoint, 'safehaxpayload.bin'), function (err) {
+      fsextra.move(path.resolve(os.tmpDir(), 'Decrypt9WIP.bin'), path.resolve(config.drive.mountPoint, 'safehaxpayload.bin'), (err) => {
         if (err) {
           return console.error('Error copying Decrypt9WIP.bin')
         }
-        // next
+        this.downloadSafehax()
       })
     })
   },
-  getText () {
+  downloadSafehax () {
+    this.setState({
+      ...this.state,
+      downloading: 'Safehax',
+      progress: 0
+    })
+    const url = 'https://github.com/TiniVi/safehax/releases/download/r19/safehax.3dsx'
+    this.downloadFile('safehax.3dsx', url, '3ds', (err) => {
+      if (err) {
+        return console.error('Error downloading safehax...')
+      }
+      return this.downloadFasthax()
+    })
+  },
+  downloadFasthax () {
+    this.setState({
+      ...this.state,
+      downloading: 'Fasthax',
+      progress: 0
+    })
+    const url = 'https://github.com/nedwill/fasthax/releases/download/v1.0.1/fasthax.3dsx'
+    this.downloadFile('fasthax.3dsx', url, '3ds', (err) => {
+      if (err) {
+        return console.error('Error downloading fasthax...')
+      }
+      this.setState({
+        ...this.state,
+        downloading: null,
+        progress: 0,
+        finished: true
+      })
+    })
+  },
+  getContent () {
     if (this.state.downloading === null) {
       return <div>Loading...</div>
     } else if (this.state.finished === true) {
-      return <div>Finished...</div>
+      return <div>
+        Finished... click next
+      </div>
     } else {
-      return <div>Downloading {this.state.downloading} ({this.state.progress}%)</div>
+      return <div>
+        <ScaleLoader />
+        Downloading {this.state.downloading} ({this.state.progress}%)
+      </div>
     }
   },
-  getContent () {
-    return <div>
-      <ScaleLoader />
-      {this.getText()}
-    </div>
+  next() {
+    if (this.state.finished) {
+      this.props.router.push('/??')
+    } else {
+      // do nothing if not finished...
+    }
   },
   render() {
     return (
@@ -108,6 +150,7 @@ let Decrypt9 = React.createClass({
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <div className={content.button} onClick={this.next}>Next</div>
         </div>
       </section>
     )
