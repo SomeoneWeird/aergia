@@ -21,7 +21,7 @@ let selectSD = React.createClass({
   getInitialState() {
     return {
       drives: [],
-      loaded: false
+      loading: true
     }
   },
   componentDidMount() {
@@ -38,14 +38,19 @@ let selectSD = React.createClass({
       })
       this.setState({
         ...this.state,
-        loaded: true,
+        loading: false,
         drives
       })
     })
     this.processDrives()
   },
   processDrives () {
-    ipcRenderer.send('driveList')
+    this.setState({
+      ...this.state,
+      loading: true
+    }, function () {
+      ipcRenderer.send('driveList')
+    })
   },
   getDrives () {
     return this.state.drives.map(drive => {
@@ -61,26 +66,24 @@ let selectSD = React.createClass({
   getContent () {
     let drives = this.getDrives()
 
-    if (drives.length) {
+    if (this.state.loading) {
       return <div>
-          <h3>Select which SD card you wish to use:</h3>
-          <ul>
-            {drives}
-          </ul>
-          <div onClick={this.processDrives}>Refresh</div>
-        </div>
+        <ScaleLoader color="#000000" width="20px" height="120px" />
+        Loading drives...
+      </div>
+    } else if (drives.length) {
+      return <div>
+        <h3>Select which SD card you wish to use:</h3>
+        <ul>
+          {drives}
+        </ul>
+        <div onClick={this.processDrives}>Refresh</div>
+      </div>
     } else {
-      if (this.state.loaded) {
-        return <div>
-          Oops, can't detect any valid drives.
-          <div onClick={this.processDrives}>Refresh</div>
-        </div>
-      } else {
-        return <div>
-          <ScaleLoader color="#000000" width="20px" height="120px" />
-          Loading drives...
-        </div>
-      }
+      return <div>
+        Oops, can't detect any valid drives.
+        <div onClick={this.processDrives}>Refresh</div>
+      </div>
     }
   },
   render() {
