@@ -20,6 +20,7 @@ import Decrypt9 from './containers/decrypt9'
 import ParentalControls from './containers/parentalControls'
 import CheckWifi from './containers/checkWifi'
 import TwoDSBrickWarning from './containers/2dsbrickwarning'
+import New3DSBrickWarning from './containers/n3dsbrickwarning'
 
 export default (
   <Route path="/" component={App}>
@@ -39,6 +40,7 @@ export default (
     <Route path="/checkParentalControls" component={ParentalControls} />
     <Route path="/checkWifi" component={CheckWifi} />
     <Route path="/2dsbrickwarning" component={TwoDSBrickWarning} />
+    <Route path="/n3dsbrickwarning" component={New3DSBrickWarning} />
 
     <Route path="*" component={AppNotFound}/>
   </Route>

@@ -49,6 +49,8 @@ export default class checkWifi extends Component {
 
       if (config.model === 'o2ds') {
         nextScreen = '/2dsbrickwarning'
+      } else if (config.model === 'n3ds') {
+        nextScreen = '/n3dsbrickwarning'
       } else {
         nextScreen = '/ctrtransfer'
       }
