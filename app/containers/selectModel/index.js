@@ -7,7 +7,6 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
-import styles from './index.css'
 
 const images = {
   twoDS: require('./images/2ds.png'),
@@ -21,10 +20,10 @@ class Device extends Component {
   }
   render () {
     return (
-      <section>
-        <div onClick={this.props.clickHandler}>{this.props.name}</div>
-        <img onClick={this.props.clickHandler} className={styles.device} src={this.props.image} />
-      </section>
+      <div className={section.device + " col-xs-6"}>
+        <div onClick={this.props.clickHandler} className={section.deviceName}>{this.props.name}</div>
+        <img onClick={this.props.clickHandler} src={this.props.image} />
+      </div>
     )
   }
 }
@@ -76,7 +75,7 @@ export default class selectModel extends Component {
   getContent () {
     switch (this.state.step) {
       case 1: {
-        return <div>
+        return <div className="row middle-xs">
           <Device clickHandler={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
           <Device clickHandler={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
           <Device clickHandler={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
