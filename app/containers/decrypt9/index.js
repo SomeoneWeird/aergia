@@ -115,8 +115,6 @@ let Decrypt9 = React.createClass({
       }
       this.setState({
         ...this.state,
-        downloading: null,
-        progress: 0,
         finished: true
       })
     })

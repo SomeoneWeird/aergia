@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { Link, browserHistory } from 'react-router';
+import { ScaleLoader } from 'halogen'
+
 import otherapp from 'otherapp'
 
 import config from '../../config';
@@ -13,6 +15,7 @@ export default class selectVersion extends Component {
     super(props)
     this.possibleValues = []
     this.state = {
+      loading: true,
       selected: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -22,6 +25,10 @@ export default class selectVersion extends Component {
       if (err) {
         return console.error(err)
       }
+      this.setState({
+        ...this.state,
+        loading: false
+      })
       this.possibleValues = versions
       this.setVersion(this.possibleValues[0])
     })
@@ -31,6 +38,7 @@ export default class selectVersion extends Component {
   }
   setVersion (version) {
     this.setState({
+      ...this.state,
       selected: version
     })
     let t = version.split('-')
@@ -46,18 +54,21 @@ export default class selectVersion extends Component {
     })
   }
   getContent () {
-    if (this.possibleValues.length)
+    if (this.state.loading) {
+      return <div>
+        <ScaleLoader color="#000000" width="20px" height="120px" />
+        Loading versions...
+      </div>
+    } else  {
       return <select value={this.state.selected} onChange={this.handleChange}>
         {this.getVersions()}
       </select>
-    else {
-      return <div>Loading values...</div>
     }
   }
   render() {
     return (
       <section>
-        <h2 className={section.title}>Select which version your DS is running</h2>
+        <h2 className={section.title}>{ config.model === 'o2ds' ? '2DS' : '3DS' } Version</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>
