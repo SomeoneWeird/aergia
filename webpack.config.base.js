@@ -59,5 +59,11 @@ export default validate({
     new webpack.IgnorePlugin(/vertx/)
   ],
 
-  externals: Object.keys(externals || {})
+  externals: Object.keys(externals || {}),
+
+  node: {
+    fs: 'empty'
+  },
+
+  target: 'web'
 });

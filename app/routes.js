@@ -22,6 +22,8 @@ import CheckWifi from './containers/checkWifi'
 import TwoDSBrickWarning from './containers/2dsbrickwarning'
 import New3DSBrickWarning from './containers/n3dsbrickwarning'
 
+import CTRTransfer from './containers/ctrtransfer'
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
@@ -41,6 +43,8 @@ export default (
     <Route path="/checkWifi" component={CheckWifi} />
     <Route path="/2dsbrickwarning" component={TwoDSBrickWarning} />
     <Route path="/n3dsbrickwarning" component={New3DSBrickWarning} />
+
+    <Route path="/ctrtransfer" component={CTRTransfer} />
 
     <Route path="*" component={AppNotFound}/>
   </Route>
