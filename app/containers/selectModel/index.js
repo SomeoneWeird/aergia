@@ -21,7 +21,7 @@ class Device extends Component {
   }
   render () {
     return (
-      <div className={section.device + " col-xs-6"}>
+      <div className={section.device + " col-xs-4"}>
         <div onClick={this.props.onClick} className={section.deviceName}>{this.props.name}</div>
         <img onClick={this.props.onClick} src={this.props.image} />
       </div>
