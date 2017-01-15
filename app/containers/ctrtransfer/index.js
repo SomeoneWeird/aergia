@@ -44,19 +44,19 @@ let CTRTransfer = React.createClass({
     })
   },
   downloadCTRfile() {
-    // const magnetLink = magnetLinks[config.region] || magnetLinks.usa
-    // torrentClient.add(magnetLink, {
-    //   path: os.tmpDir()
-    // }, (torrent) => {
-    //   const progressInterval = setInterval(() => {
-    //     this.setState({
-    //       ...this.state,
-    //       progress: (torrent.progress * 100).toFixed(0)
-    //     })
-    //   }, 500)
+    const magnetLink = magnetLinks[config.region] || magnetLinks.usa
+    torrentClient.add(magnetLink, {
+      path: os.tmpDir()
+    }, (torrent) => {
+      const progressInterval = setInterval(() => {
+        this.setState({
+          ...this.state,
+          progress: (torrent.progress * 100).toFixed(0)
+        })
+      }, 500)
 
-    //   torrent.on('done', () => {
-    //     clearInterval(progressInterval)
+      torrent.on('done', () => {
+        clearInterval(progressInterval)
         this.setState({
           ...this.state,
           extracting: true
@@ -69,8 +69,8 @@ let CTRTransfer = React.createClass({
             })
           })
         })
-    //   })
-    // })
+      })
+    })
   },
   getContent () {
     if (this.state.downloading === null) {
@@ -106,7 +106,7 @@ let CTRTransfer = React.createClass({
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <div className={content.button} onClick={this.next}>Next</div>
+          <div className={`${content.button} ${this.state.finished ? '' : content.buttonDisabled}`} onClick={this.next}>Next</div>
         </div>
       </section>
     )
