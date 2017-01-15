@@ -56,7 +56,8 @@ export default validate({
   },
 
   plugins: [
-    new webpack.IgnorePlugin(/vertx/)
+    new webpack.IgnorePlugin(/vertx/),
+    new webpack.ContextReplacementPlugin(/bindings$/, /^$/)
   ],
 
   externals: Object.keys(externals || {}),
