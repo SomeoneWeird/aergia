@@ -7,11 +7,12 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
-
 const images = {
   twoDS: require('./images/2ds.png'),
-  o3DS: require('./images/old3dsxl.png'),
-  n3DS: require('./images/new3dsxl.png')
+  o3DS: require('./images/old/nonxl.jpg'),
+  o3DSXL: require('./images/old/xl.png'),
+  n3DS: require('./images/new/nonxl.png'),
+  n3DSXL: require('./images/new/xl.png')
 }
 
 class Device extends Component {
@@ -21,8 +22,8 @@ class Device extends Component {
   render () {
     return (
       <div className={section.device + " col-xs-6"}>
-        <div onClick={this.props.clickHandler} className={section.deviceName}>{this.props.name}</div>
-        <img onClick={this.props.clickHandler} src={this.props.image} />
+        <div onClick={this.props.onClick} className={section.deviceName}>{this.props.name}</div>
+        <img onClick={this.props.onClick} src={this.props.image} />
       </div>
     )
   }
@@ -85,20 +86,32 @@ export default class selectModel extends Component {
       })
     }
   }
+  getIsXLContent () {
+    if (config.model === 'n3ds') {
+      return <div className={section.device}>
+        <img onClick={this.setXL(true)} src={images.n3DSXL} />
+        <img onClick={this.setXL(false)} src={images.n3DS} />
+      </div>
+    } else {
+      return <div className={section.device}>
+        <img onClick={this.setXL(true)} src={images.o3DSXL} />
+        <img onClick={this.setXL(false)} src={images.o3DS} />
+      </div>
+    }
+  }
   getContent () {
     switch (this.state.step) {
       case 1: {
         return <div className="row middle-xs">
-          <Device clickHandler={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
-          <Device clickHandler={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
-          <Device clickHandler={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
+          <Device onClick={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
+          <Device onClick={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
+          <Device onClick={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
         </div>
       }
       case 2: {
         return <div>
           Is your device an XL model?
-          <div onClick={this.setXL(true)}>Yes</div>
-          <div onClick={this.setXL(false)}>No</div>
+          {this.getIsXLContent()}
         </div>
       }
     }
