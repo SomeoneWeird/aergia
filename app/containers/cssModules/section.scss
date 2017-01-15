@@ -7,12 +7,15 @@ section {
 		margin: 0 0 40px;
 		text-transform: uppercase;
 		font-size: 34px;
+		text-align: center;
+		padding-top: 3%;
 		letter-spacing: 4px;
 		font-weight: 200;
 	}
 
 	.navigation {
-
+		position: fixed;
+		bottom: 5%;
 		a:nth-child(2) {
 			float: right;
 		}
@@ -23,7 +26,7 @@ section {
 		height: auto;
 		position: absolute;
 		top: 50%;
-		left: 50%;
+		left: 55%;
 		transform: translate(-50%, -50%);
 	}
 }

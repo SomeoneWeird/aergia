@@ -10,6 +10,8 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
+import styles from './index.css'
+
 export default class selectVersion extends Component {
   constructor (props) {
     super(props)
@@ -55,14 +57,16 @@ export default class selectVersion extends Component {
   }
   getContent () {
     if (this.state.loading) {
-      return <div>
+      return <div className={styles.center}>
         <ScaleLoader color="#000000" width="20px" height="120px" />
         Loading versions...
       </div>
     } else  {
-      return <select value={this.state.selected} onChange={this.handleChange}>
-        {this.getVersions()}
-      </select>
+      return <div className={`${styles.center} ${styles.select}`}>
+        <select value={this.state.selected} onChange={this.handleChange}>
+          {this.getVersions()}
+        </select>
+      </div>
     }
   }
   render() {

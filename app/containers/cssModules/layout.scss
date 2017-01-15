@@ -5,6 +5,7 @@
 	height: 100vh;
 	padding: 25px;
 	position: relative;
+	text-align: center;
 
 	.sidebarLogo {
 		margin-left: auto;
@@ -29,7 +30,6 @@
 			color: $color-black;
 			text-transform: lowercase;
 			text-decoration: none;
-			margin-left: 1rem;
 			font-weight: 300;
 		}
 	}

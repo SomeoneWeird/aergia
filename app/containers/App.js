@@ -10,7 +10,7 @@ export default class App extends Component {
     return (
       <div className="row">
         <Sidebar />
-        <div className="appBody col-xs-10">
+        <div className="appBody col-xs-11">
           {this.props.children}
         </div>
       </div>

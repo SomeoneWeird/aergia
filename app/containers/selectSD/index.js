@@ -11,6 +11,8 @@ import config from '../../config'
 import section from '../cssModules/section.scss'
 import content from '../cssModules/content.scss'
 
+import styles from './index.css'
+
 // hax for the moment
 let folder = require('path').resolve(require('os').tmpdir(), 'aergia')
 try {
@@ -53,8 +55,8 @@ let selectSD = React.createClass({
     })
   },
   getDrives () {
-    return this.state.drives.map(drive => {
-      return <li key={drive.mountPoint} onClick={this.setDrive(drive)}>{drive.description} @ {drive.mountPoint} ({drive.size})</li>
+    return this.state.drives.map((drive, i) => {
+      return <span key={drive.mountPoint} onClick={this.setDrive(drive)}>({i+1}) {drive.description} @ {drive.mountPoint} ({drive.size})</span>
     })
   },
   setDrive (drive) {
@@ -73,16 +75,18 @@ let selectSD = React.createClass({
       </div>
     } else if (drives.length) {
       return <div>
-        <h3>Select which SD card you wish to use:</h3>
-        <ul>
-          {drives}
-        </ul>
-        <div onClick={this.processDrives}>Refresh</div>
+        <h3>Select which SD card you wish to use</h3>
+        {drives}
+        <br />
+        <br />
+        <div className={content.button} onClick={this.processDrives}>Refresh</div>
       </div>
     } else {
       return <div>
         Oops, can't detect any valid drives.
-        <div onClick={this.processDrives}>Refresh</div>
+        <br />
+        <br />
+        <div className={content.button} onClick={this.processDrives}>Refresh</div>
       </div>
     }
   },
@@ -90,7 +94,7 @@ let selectSD = React.createClass({
     return (
       <section>
         <h2 className={section.title}>SD Card Selection</h2>
-        <div className={section.content}>
+        <div className={`${section.content} ${styles.center}`}>
           {this.getContent()}
           <br />
           <br />

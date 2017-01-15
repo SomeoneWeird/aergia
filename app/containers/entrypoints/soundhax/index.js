@@ -154,8 +154,10 @@ let SoundHax = React.createClass({
         Finished... click next
       </div>
     } else {
-      return <div>
+      return <div className={styles.center}>
         <ScaleLoader color="#000000" width="20px" height="120px" />
+        <br />
+        <br />
         Downloading {this.state.downloading} ({this.state.progress}%)
       </div>
     }
@@ -171,7 +173,7 @@ let SoundHax = React.createClass({
     return (
       <section>
         <h2 className={section.title}>Soundhax Setup</h2>
-        <div className={section.content}>
+        <div className={`${section.content} ${styles.center}`}>
           {this.getContent()}
         </div>
         <div className={section.navigation}>
