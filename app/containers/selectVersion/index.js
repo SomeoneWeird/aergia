@@ -78,7 +78,7 @@ export default class selectVersion extends Component {
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <Link className={content.button} to={'/entry/determine'}>Next</Link>
+          <Link className={`${content.button} ${content.buttonNext}`} to={'/entry/determine'}>Next</Link>
         </div>
       </section>
     )

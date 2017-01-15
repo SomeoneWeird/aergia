@@ -56,7 +56,7 @@ let selectSD = React.createClass({
   },
   getDrives () {
     return this.state.drives.map((drive, i) => {
-      return <span key={drive.mountPoint} onClick={this.setDrive(drive)}>({i+1}) {drive.description} @ {drive.mountPoint} ({drive.size})</span>
+      return <span className={`${content.button} ${content.buttonKeepText}`} key={drive.mountPoint} onClick={this.setDrive(drive)}>({i+1}) {drive.description} @ {drive.mountPoint} ({drive.size})</span>
     })
   },
   setDrive (drive) {
@@ -98,7 +98,7 @@ let selectSD = React.createClass({
           {this.getContent()}
           <br />
           <br />
-          <div onClick={this.setDrive({ description: folder, mountPoint: folder })}>hacks: use {folder}</div>
+          hacks: <div className={content.button} onClick={this.setDrive({ description: folder, mountPoint: folder })}>use {folder}</div>
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>

@@ -163,7 +163,7 @@ let Decrypt9 = React.createClass({
         </div>
         <div className={section.navigation}>
           <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <div className={`${content.button} ${this.state.finished ? '' : content.buttonDisabled}`} onClick={this.next}>Next</div>
+          <div className={`${content.button} ${content.buttonNext} ${this.state.finished ? '' : content.buttonDisabled}`} onClick={this.next}>Next</div>
         </div>
       </section>
     )

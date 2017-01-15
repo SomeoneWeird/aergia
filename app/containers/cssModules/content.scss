@@ -23,4 +23,14 @@ a.button,
 		background: $color-grey;
 		border: 1px solid $color-grey;
 	}
+
+	&KeepText {
+		text-transform: none !important;
+	}
+
+	&Next {
+		position: fixed;
+		bottom: 5%;
+		right: 3%;
+	}
 }
