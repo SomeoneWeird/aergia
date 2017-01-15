@@ -16,16 +16,14 @@ function openGithub () {
 export default class sidebar extends Component {
   render() {
     return (
-      <div className={layout.sidebar}>
+      <div className={layout.sidebar + ' col-xs-2'}>
         <div className={layout.sidebarLogo}>
           <span>Aergia</span>
         </div>
-        <div className={layout.sidebarLinks}>
-          <Link to="/credits">Credits</Link>
-          <br />
-          <br />
-          <Link to="#" onClick={openGithub}>Github</Link>
-        </div>
+        <ul className={layout.sidebarLinks}>
+          <li><Link to="/credits">Credits</Link></li>
+          <li><Link to="#" onClick={openGithub}>Github</Link></li>
+        </ul>
       </div>
     )
   }

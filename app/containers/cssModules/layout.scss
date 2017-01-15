@@ -4,6 +4,7 @@
 	background: $color-green;
 	height: 100vh;
 	padding: 25px;
+	position: relative;
 
 	.sidebarLogo {
 		margin-left: auto;
@@ -18,7 +19,11 @@
 
 	.sidebarLinks {
 		text-align: center;
-		margin-top: 620%;
+		position: absolute;
+		bottom: 1em;
+		margin: 0;
+		padding: 0;
+		list-style: none;
 
 		a {
 			color: $color-black;
