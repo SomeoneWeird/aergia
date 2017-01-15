@@ -89,6 +89,7 @@ let selectSD = React.createClass({
   render() {
     return (
       <section>
+        <h2 className={section.title}>SD Card Selection</h2>
         <div className={section.content}>
           {this.getContent()}
           <br />

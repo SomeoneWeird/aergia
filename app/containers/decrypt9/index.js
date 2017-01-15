@@ -143,6 +143,7 @@ let Decrypt9 = React.createClass({
   render() {
     return (
       <section>
+        <h2 className={section.title}>Decrypt9 Setup</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>

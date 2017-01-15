@@ -74,6 +74,7 @@ export default class determineEntrypoint extends Component {
   render() {
     return (
       <section>
+        <h2 className={section.title}>Select Exploit</h2>
         <div className={section.content}>
           {getContent()}
         </div>

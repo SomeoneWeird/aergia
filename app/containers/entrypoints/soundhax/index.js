@@ -159,6 +159,7 @@ let SoundHax = React.createClass({
   render() {
     return (
       <section>
+        <h2 className={section.title}>Soundhax Setup</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>

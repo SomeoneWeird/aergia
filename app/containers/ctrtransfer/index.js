@@ -101,6 +101,7 @@ let CTRTransfer = React.createClass({
   render() {
     return (
       <section>
+        <h2 className={section.title}>CTR Transfer Setup</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>
