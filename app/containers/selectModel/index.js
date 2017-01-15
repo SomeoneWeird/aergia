@@ -88,9 +88,13 @@ export default class selectModel extends Component {
   }
   getIsXLContent () {
     if (config.model === 'n3ds') {
-      return <div className={section.device}>
-        <img onClick={this.setXL(true)} src={images.n3DSXL} />
-        <img onClick={this.setXL(false)} src={images.n3DS} />
+      return <div className={section.device + ' row'}>
+        <div className={section.device + " col-xs-6"}>
+          <img onClick={this.setXL(true)} src={images.n3DSXL} />
+        </div>
+        <div className={section.device + " col-xs-6"}>
+          <img onClick={this.setXL(false)} src={images.n3DS} />
+        </div>
       </div>
     } else {
       return <div className={section.device}>
