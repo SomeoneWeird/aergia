@@ -9,7 +9,7 @@ import { ScaleLoader } from 'halogen'
 
 import request from 'request'
 import requestProgress from 'request-progress'
-import admZip from 'adm-zip'
+import StreamZip from 'node-stream-zip'
 import fsextra from 'fs-extra'
 
 import config from '../../config'
@@ -78,13 +78,27 @@ let Decrypt9 = React.createClass({
         return console.error('Error downloading decrypt9...', err)
       }
 
-      let zip = new admZip(path.resolve(os.tmpDir(), 'decrypt9.zip'))
-      zip.extractAllTo(os.tmpDir(), true)
-      fsextra.move(path.resolve(os.tmpDir(), 'Decrypt9WIP.bin'), path.resolve(config.drive.mountPoint, 'safehaxpayload.bin'), (err) => {
-        if (err) {
-          return console.error('Error copying Decrypt9WIP.bin')
-        }
-        this.downloadSafehax()
+      let zip = new StreamZip({
+        file: path.resolve(os.tmpDir(), 'decrypt9.zip'),
+        storeEntries: true
+      })
+
+      zip.on('error', console.error)
+
+      const fileName = 'Decrypt9WIP.bin'
+
+      zip.on('ready', () => {
+        zip.extract(fileName, os.tmpdir(), (err) => {
+          if (err) {
+            return console.error(err)
+          }
+          fsextra.move(path.resolve(os.tmpdir(), fileName), path.resolve(config.drive.mountPoint, 'safehaxpayload.bin'), (err) => {
+            if (err) {
+              return console.error(err)
+            }
+            this.downloadSafehax()
+          })
+        })
       })
     })
   },

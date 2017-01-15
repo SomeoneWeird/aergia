@@ -9,7 +9,7 @@ import { ScaleLoader } from 'halogen'
 
 import request from 'request'
 import requestProgress from 'request-progress'
-import admZip from 'adm-zip'
+import StreamZip from 'node-stream-zip'
 import fsextra from 'fs-extra'
 import async from 'async'
 
@@ -96,43 +96,54 @@ let SoundHax = React.createClass({
         return console.error('Error downloading starter.zip...', err)
       }
 
-      console.log('unzipping', zipPath)
+      let zip = new StreamZip({
+        file: zipPath,
+        storeEntries: true
+      })
 
-      let zip = new admZip(zipPath)
+      zip.on('error', console.error)
 
-      // TODO: check none of these files already exist before overwrite?
-      zip.extractAllTo(config.drive.mountPoint, true)
-
-      let files = []
-      fsextra.walk(path.resolve(config.drive.mountPoint, 'starter'))
-        .on('data', function (file) {
-          files.push(file.path)
+      zip.on('ready', () => {
+        zip.extract(null, config.drive.mountPoint, (err) => {
+          if (err) {
+            return console.error(err)
+          }
+          return extracted()
         })
-        .on('end', () => {
-          async.each(files, function (file, done) {
-            fsextra.move(file, file.replace('starter/', ''), { mkdirp: true }, function (err) {
-              if (err && err.code === 'EEXIST') {
-                // ignore
-              } else if (err) {
-                return done(err)
+      })
+
+      const extracted = () => {
+        let files = []
+        fsextra.walk(path.resolve(config.drive.mountPoint, 'starter'))
+          .on('data', function (file) {
+            files.push(file.path)
+          })
+          .on('end', () => {
+            async.each(files, function (file, done) {
+              fsextra.move(file, file.replace('starter/', ''), { mkdirp: true }, function (err) {
+                if (err && err.code === 'EEXIST') {
+                  // ignore
+                } else if (err) {
+                  return done(err)
+                }
+                done()
+              })
+            }, (err) => {
+              if (err) {
+                return console.error(err)
               }
-              done()
-            })
-          }, (err) => {
-            if (err) {
-              return console.error(err)
-            }
 
-            // remove previous zip + dir
-            fsextra.remove(zipPath)
-            fsextra.remove(path.resolve(config.drive.mountPoint, 'starter'))
+              // remove previous zip + dir
+              fsextra.remove(zipPath)
+              fsextra.remove(path.resolve(config.drive.mountPoint, 'starter'))
 
-            this.setState({
-              ...this.state,
-              finished: true
+              this.setState({
+                ...this.state,
+                finished: true
+              })
             })
           })
-        })
+      }
     })
   },
   getContent () {

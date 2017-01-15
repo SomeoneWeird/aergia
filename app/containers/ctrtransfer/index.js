@@ -7,7 +7,7 @@ import { Link, browserHistory } from 'react-router';
 import { ScaleLoader } from 'halogen'
 
 import Webtorrent from 'webtorrent'
-import admZip from 'adm-zip'
+import StreamZip from 'node-stream-zip'
 
 import config from '../../config'
 
@@ -61,11 +61,22 @@ let CTRTransfer = React.createClass({
           ...this.state,
           extracting: true
         }, () => {
-          let zip = new admZip(path.resolve(os.tmpDir(), zipName))
-          zip.extractAllToAsync(path.resolve(config.drive.mountPoint, 'files9'), true, () => {
-            this.setState({
-              ...this.state,
-              finished: true
+          let zip = new StreamZip({
+            file: path.resolve(os.tmpDir(), zipName),
+            storeEntries: true
+          })
+
+          zip.on('error', console.error)
+
+          zip.on('ready', () => {
+            zip.extract(null, path.resolve(config.drive.mountPoint, 'files9'), (err) => {
+              if (err) {
+                return console.error(err)
+              }
+              this.setState({
+                ...this.state,
+                finished: true
+              })
             })
           })
         })
