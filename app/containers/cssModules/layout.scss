@@ -1,13 +1,14 @@
 @import "./includes/variables.scss";
 
 .sidebar {
-	background: $color-orange;
+	background: $color-green;
 	height: 100vh;
 	padding: 25px;
 
 	.sidebarLogo {
-		text-align: right;
-		background: url('./images/aergia_logo.svg') transparent top right no-repeat;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
 		height: 2rem;
 
 		span {
@@ -16,8 +17,8 @@
 	}
 
 	.sidebarLinks {
-		text-align: right;
-		margin-top: .5rem;
+		text-align: center;
+		margin-top: 620%;
 
 		a {
 			color: $color-black;
