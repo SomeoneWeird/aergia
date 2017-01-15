@@ -17,4 +17,10 @@ a.button,
 	&:focus {
 		background: $color-orange;
 	}
+
+	&Disabled {
+		pointer-events: none;
+		background: $color-grey;
+		border: 1px solid $color-grey;
+	}
 }
