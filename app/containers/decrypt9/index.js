@@ -72,7 +72,7 @@ let Decrypt9 = React.createClass({
       downloading: 'Decrypt9',
       progress: 0
     })
-    const url = 'https://github.com/d0k3/Decrypt9WIP/releases/download/20161113/Decrypt9WIP-20161113-135126.zip'
+    const url = 'https://github.com/d0k3/Decrypt9WIP/releases/download/20170115/Decrypt9WIP-20170115-230509.zip'
     this.downloadFile('decrypt9.zip', url, false, (err) => {
       if (err) {
         return console.error('Error downloading decrypt9...', err)
