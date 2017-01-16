@@ -61,19 +61,22 @@ let SoundHax = React.createClass({
     this.setState({
       ...this.state,
       downloading: 'Soundhax'
-    })
-    const url = `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region.toLowerCase()}-${config.model}.m4a?raw=true`
-    this.downloadFile('soundhax.m4a', url, (err) => {
-      if (err) {
-        return console.error('Error downloading soundhax...', err)
-      }
-      this.downloadOtherapp()
+    }, () => {
+      const url = `https://github.com/nedwill/soundhax/blob/master/soundhax-${config.region.toLowerCase()}-${config.model}.m4a?raw=true`
+      this.downloadFile('soundhax.m4a', url, (err) => {
+        if (err) {
+          return console.error('Error downloading soundhax...', err)
+        }
+        this.downloadOtherapp()
+      })
     })
   },
   downloadOtherapp () {
     this.setState({
       ...this.state,
       downloading: 'otherapp.bin'
+    }, () => {
+      ipcRenderer.send('otherappURL', JSON.stringify(config))
     })
     ipcRenderer.on('otherappURLReply', (event, url) => {
       this.downloadFile('otherapp.bin', url, (err) => {
@@ -83,19 +86,20 @@ let SoundHax = React.createClass({
         this.downloadHBSK()
       })
     })
-    ipcRenderer.send('otherappURL', JSON.stringify(config))
   },
   downloadHBSK () {
-    this.setState({
-      ...this.state,
-      downloading: 'Homebrew Starter Kit'
-    })
     const zipPath = path.resolve(config.drive.mountPoint, 'starter.zip')
-    this.downloadFile(zipPath, 'http://smealum.github.io/ninjhax2/starter.zip', (err) => {
-      if (err) {
-        return console.error('Error downloading starter.zip...', err)
-      }
 
+    const download = () => {
+      this.downloadFile(zipPath, 'http://smealum.github.io/ninjhax2/starter.zip', (err) => {
+        if (err) {
+          return console.error('Error downloading starter.zip...', err)
+        }
+        return extract()
+      })
+    }
+
+    const extract = () => {
       let zip = new StreamZip({
         file: zipPath,
         storeEntries: true
@@ -111,39 +115,46 @@ let SoundHax = React.createClass({
           return extracted()
         })
       })
+    }
 
-      const extracted = () => {
-        let files = []
-        fsextra.walk(path.resolve(config.drive.mountPoint, 'starter'))
-          .on('data', function (file) {
-            files.push(file.path)
-          })
-          .on('end', () => {
-            async.each(files, function (file, done) {
-              fsextra.move(file, file.replace('starter/', ''), { mkdirp: true }, function (err) {
-                if (err && err.code === 'EEXIST') {
-                  // ignore
-                } else if (err) {
-                  return done(err)
-                }
-                done()
-              })
-            }, (err) => {
-              if (err) {
-                return console.error(err)
+    const extracted = () => {
+      let files = []
+      fsextra.walk(path.resolve(config.drive.mountPoint, 'starter'))
+        .on('data', function (file) {
+          files.push(file.path)
+        })
+        .on('end', () => {
+          async.each(files, function (file, done) {
+            fsextra.move(file, file.replace('starter/', ''), { mkdirp: true }, function (err) {
+              if (err && err.code === 'EEXIST') {
+                // ignore
+              } else if (err) {
+                return done(err)
               }
+              done()
+            })
+          }, (err) => {
+            if (err) {
+              return console.error(err)
+            }
 
-              // remove previous zip + dir
-              fsextra.remove(zipPath)
-              fsextra.remove(path.resolve(config.drive.mountPoint, 'starter'))
+            // remove previous zip + dir
+            fsextra.remove(zipPath)
+            fsextra.remove(path.resolve(config.drive.mountPoint, 'starter'))
 
-              this.setState({
-                ...this.state,
-                finished: true
-              })
+            this.setState({
+              ...this.state,
+              finished: true
             })
           })
-      }
+        })
+    }
+
+    this.setState({
+      ...this.state,
+      downloading: 'Homebrew Starter Kit'
+    }, function () {
+      download()
     })
   },
   getContent () {
