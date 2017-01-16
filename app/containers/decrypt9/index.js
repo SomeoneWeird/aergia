@@ -158,7 +158,7 @@ let Decrypt9 = React.createClass({
     return (
       <section>
         <h2 className={section.title}>Decrypt9 Setup</h2>
-        <div className={section.content}>
+        <div className={`${section.content} ${styles.center} ${styles.content}`}>
           {this.getContent()}
         </div>
         <div className={section.navigation}>
