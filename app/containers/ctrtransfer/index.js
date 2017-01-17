@@ -87,9 +87,7 @@ let CTRTransfer = React.createClass({
     if (this.state.downloading === null) {
       return <div>Loading...</div>
     } else if (this.state.finished === true) {
-      return <div>
-        Finished... click next
-      </div>
+      return <div className={content.largeTick}>✓</div>
     } else if (this.state.extracting === true) {
       return <div>
         <ScaleLoader color="#000000" width="20px" height="120px" />
