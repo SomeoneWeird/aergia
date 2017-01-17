@@ -63,3 +63,5 @@ You can clone the repo, run `npm install` (or use `yarn`) and then run `npm run 
 - [ ] SD card cleanup
 - [ ] "What next?"
 - [ ] Credits page
+- [ ] Auto update
+
