@@ -7,6 +7,8 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
+import styles from './index.css'
+
 const totalSteps = 2
 const nextScreen = '/checkWifi'
 
@@ -57,18 +59,22 @@ export default class parentalControls extends Component {
   getContent () {
     switch (this.state.step) {
       case 1: {
-        return <div className="row middle-xs">
+        return <div>
           Do you have Parental Controls enabled?
           <br/>
-          <div className={content.button} onClick={this.isEnabled(true)}>Yes</div>
-          <div className={content.button} onClick={this.isEnabled(false)}>No</div>
+          <br/>
+          <br/>
+          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(false)}>No</div>
+          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(true)}>Yes</div>
         </div>
       }
       case 2: {
         return <div>
           Please disable Parental Controls before going forward.
           <br/>
-          <div className={content.button} onClick={this.goForward}>I have disabled parental controls</div>
+          <br/>
+          <br/>
+          <div className={`${content.button} ${content.buttonKeepText}`} onClick={this.goForward}>I have disabled parental controls</div>
         </div>
       }
     }
@@ -77,7 +83,7 @@ export default class parentalControls extends Component {
     return (
       <section>
         <h2 className={section.title}>Parental Controls</h2>
-        <div className={section.content}>
+        <div className={`${section.content} ${styles.center} ${styles.content}`}>
           {this.getContent()}
         </div>
         <div className={section.navigation}>

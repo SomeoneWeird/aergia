@@ -40,7 +40,7 @@ function getEntrypoints () {
 
 function getEntryLinks (entrypoints) {
   return entrypoints.map((name) => {
-    return <div className={styles.entrypointButton}>
+    return <div key={name} className={styles.entrypointButton}>
       <Link className={`${content.button}`} to={{ pathname: '/selectsd', query: { returnTo: `/entry/${name}/start` } }}>{name}</Link>
     </div>
   })

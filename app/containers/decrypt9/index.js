@@ -141,6 +141,9 @@ let Decrypt9 = React.createClass({
     } else {
       return <div>
         <ScaleLoader color="#000000" width="20px" height="120px" />
+        <br />
+        <br />
+        <br />
         Downloading {this.state.downloading} ({this.state.progress}%)
       </div>
     }

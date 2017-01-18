@@ -59,6 +59,9 @@ export default class selectVersion extends Component {
     if (this.state.loading) {
       return <div className={styles.center}>
         <ScaleLoader color="#000000" width="20px" height="120px" />
+        <br />
+        <br />
+        <br />
         Loading versions...
       </div>
     } else  {

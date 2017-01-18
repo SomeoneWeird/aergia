@@ -7,6 +7,8 @@ import config from '../../config';
 import section from '../cssModules/section.scss';
 import content from '../cssModules/content.scss';
 
+import styles from './index.css'
+
 const totalSteps = 2
 
 export default class checkWifi extends Component {
@@ -66,17 +68,22 @@ export default class checkWifi extends Component {
   getContent () {
     switch (this.state.step) {
       case 1: {
-        return <div className="row middle-xs">
-          Is your device connected to Wifi?
-          <div className={content.button} onClick={this.isEnabled(true)}>Yes</div>
-          <div className={content.button} onClick={this.isEnabled(false)}>No</div>
+        return <div>
+          Is your device connected to WiFi?
+          <br/>
+          <br/>
+          <br/>
+          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(false)}>No</div>
+          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(true)}>Yes</div>
         </div>
       }
       case 2: {
         return <div>
-          You need to connect to Wifi before you start..
+          You need to connect to WiFi before you start..
           <br/>
-          <div className={content.button} onClick={this.goForward}>I have setup Wifi on my device</div>
+          <br/>
+          <br/>
+          <div className={`${content.button} ${content.buttonKeepText}`} onClick={this.goForward}>I have setup WiFi on my device</div>
         </div>
       }
     }
@@ -85,7 +92,7 @@ export default class checkWifi extends Component {
     return (
       <section>
         <h2 className={section.title}>WiFi</h2>
-        <div className={section.content}>
+        <div className={`${section.content} ${styles.center} ${styles.content}`}>
           {this.getContent()}
         </div>
         <div className={section.navigation}>

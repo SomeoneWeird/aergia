@@ -91,11 +91,17 @@ let CTRTransfer = React.createClass({
     } else if (this.state.extracting === true) {
       return <div>
         <ScaleLoader color="#000000" width="20px" height="120px" />
+        <br />
+        <br />
+        <br />
         Extracting files...
       </div>
     } else {
       return <div>
         <ScaleLoader color="#000000" width="20px" height="120px" />
+        <br />
+        <br />
+        <br />
         Downloading {this.state.downloading} ({this.state.progress}%)
       </div>
     }
