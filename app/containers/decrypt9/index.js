@@ -39,7 +39,7 @@ let Decrypt9 = React.createClass({
   downloadFile (filename, url, dlToDrive = false, done) {
     console.log('downloading to', path.resolve(config.drive.mountPoint, filename))
 
-    let pathTo = path.resolve(os.tmpDir(), filename)
+    let pathTo = path.resolve(os.tmpdir(), filename)
 
     if (dlToDrive === true) {
       pathTo = path.resolve(config.drive.mountPoint, filename)
@@ -79,7 +79,7 @@ let Decrypt9 = React.createClass({
       }
 
       let zip = new StreamZip({
-        file: path.resolve(os.tmpDir(), 'decrypt9.zip'),
+        file: path.resolve(os.tmpdir(), 'decrypt9.zip'),
         storeEntries: true
       })
 

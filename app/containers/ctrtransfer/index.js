@@ -46,7 +46,7 @@ let CTRTransfer = React.createClass({
   downloadCTRfile() {
     const magnetLink = magnetLinks[config.region] || magnetLinks.usa
     torrentClient.add(magnetLink, {
-      path: os.tmpDir()
+      path: os.tmpdir()
     }, (torrent) => {
       const progressInterval = setInterval(() => {
         this.setState({
@@ -62,7 +62,7 @@ let CTRTransfer = React.createClass({
           extracting: true
         }, () => {
           let zip = new StreamZip({
-            file: path.resolve(os.tmpDir(), zipName),
+            file: path.resolve(os.tmpdir(), zipName),
             storeEntries: true
           })
 
