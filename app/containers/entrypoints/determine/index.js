@@ -29,6 +29,12 @@ const entrypoints = {
 }
 
 export default class determineEntrypoint extends Component {
+  setEntrypoint (name) {
+    return () => {
+      config.entrypoint = name
+      this.props.router.push(`/selectsd?returnTo=/getstarted`)
+    }
+  }
   getEntrypoints () {
     let validEntrypoints = []
     for (let k in entrypoints[config.model]) {
@@ -41,7 +47,7 @@ export default class determineEntrypoint extends Component {
   getEntryLinks (entrypoints) {
     return entrypoints.map((name) => {
       return <div key={name} className={styles.entrypointButton}>
-        <Link className={`${content.button}`} to={{ pathname: '/selectsd', query: { returnTo: `/entry/${name}/start` } }}>{name}</Link>
+        <Link className={`${content.button}`} onClick={this.setEntrypoint(name)}>{name}</Link>
       </div>
     })
   }

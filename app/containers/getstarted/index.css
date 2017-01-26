@@ -1,0 +1,18 @@
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content {
+  padding-top: 5%;
+}
+
+.steps {
+  text-align: left;
+  padding-left: 37%;
+}
+
+.buttonPadding {
+  margin-left: 5%;
+}
