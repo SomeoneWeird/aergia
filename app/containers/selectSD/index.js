@@ -26,25 +26,29 @@ let selectSD = React.createClass({
       loading: true
     }
   },
-  componentDidMount() {
-    ipcRenderer.on('driveListReply', (event, drives) => {
-      drives = JSON.parse(drives)
-      drives = drives.filter(function (drive) {
-        return drive.system === false && drive.protected === false && drive.mountpoints.length
-      }).map(function (drive) {
-        return {
-          description: drive.description,
-          mountPoint: drive.mountpoints.length ? drive.mountpoints[0].path : 'Not mounted',
-          size: bytes(drive.size)
-        }
-      })
-      this.setState({
-        ...this.state,
-        loading: false,
-        drives
-      })
+  gotDriveList(event, drives) {
+    drives = JSON.parse(drives)
+    drives = drives.filter(function (drive) {
+      return drive.system === false && drive.protected === false && drive.mountpoints.length
+    }).map(function (drive) {
+      return {
+        description: drive.description,
+        mountPoint: drive.mountpoints.length ? drive.mountpoints[0].path : 'Not mounted',
+        size: bytes(drive.size)
+      }
     })
+    this.setState({
+      ...this.state,
+      loading: false,
+      drives
+    })
+  },
+  componentDidMount() {
+    ipcRenderer.on('driveListReply', this.gotDriveList)
     this.processDrives()
+  },
+  componentWillUnmount() {
+    ipcRenderer.removeListener('driveListReply', this.gotDriveList)
   },
   processDrives () {
     this.setState({
