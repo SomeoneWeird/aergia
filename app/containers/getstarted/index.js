@@ -33,7 +33,7 @@ export default class getStarted extends Component {
   }
   goForward () {
     if (this.state.step === totalSteps) {
-      this.props.router.push(`/entry/${config.entrypoint}/start`)
+      this.props.router.push(`/entry/${config.entrypoint}/setup`)
     } else {
       this.setState({
         ...this.setState,

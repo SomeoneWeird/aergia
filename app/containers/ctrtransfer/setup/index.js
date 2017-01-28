@@ -9,10 +9,10 @@ import { ScaleLoader } from 'halogen'
 import Webtorrent from 'webtorrent'
 import StreamZip from 'node-stream-zip'
 
-import config from '../../config'
+import config from '../../../config'
 
-import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
+import section from '../../cssModules/section.scss'
+import content from '../../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -108,7 +108,7 @@ let CTRTransfer = React.createClass({
   },
   next() {
     if (this.state.finished) {
-      this.props.router.push('/arm9loaderhax')
+      this.props.router.push('/checkParentalControls')
     } else {
       // do nothing if not finished...
     }

@@ -9,9 +9,6 @@ import content from '../cssModules/content.scss';
 
 import styles from './index.css'
 
-const totalSteps = 2
-const nextScreen = '/ctrtransfer'
-
 export default class New3DSBrickWarning extends Component {
   constructor(props) {
     super(props)
@@ -51,7 +48,7 @@ export default class New3DSBrickWarning extends Component {
       <br />
       <br />
       <br />
-      <Link className={`${content.button} ${content.buttonKeepText} ${this.state.countdown === 0 ? '' : content.buttonDisabled}`} to={'/ctrtransfer'}>I will never close my devices lid while downgraded</Link>
+      <Link className={`${content.button} ${content.buttonKeepText} ${this.state.countdown === 0 ? '' : content.buttonDisabled}`} to={`/entry/${config.entrypoint}/launch`}>I will never close my devices lid while downgraded</Link>
       <br />
       <br />
       {this.getCountdown()}

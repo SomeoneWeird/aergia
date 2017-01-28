@@ -54,7 +54,7 @@ export default class checkWifi extends Component {
       } else if (config.model === 'n3ds') {
         nextScreen = '/n3dsbrickwarning'
       } else {
-        nextScreen = '/ctrtransfer'
+        nextScreen = `/entry/${config.entrypoint}/launch`
       }
 
       this.props.router.push(nextScreen)

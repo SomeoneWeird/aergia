@@ -13,10 +13,10 @@ import StreamZip from 'node-stream-zip'
 import fsextra from 'fs-extra'
 import async from 'async'
 
-import config from '../../../config'
+import config from '../../../../config'
 
-import section from '../../cssModules/section.scss'
-import content from '../../cssModules/content.scss'
+import section from '../../../cssModules/section.scss'
+import content from '../../../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -174,7 +174,7 @@ let SoundHax = React.createClass({
   },
   next() {
     if (this.state.finished) {
-      this.props.router.push('/decrypt9')
+      this.props.router.push('/decrypt9/setup')
     } else {
       // do nothing if not finished...
     }

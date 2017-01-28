@@ -12,10 +12,10 @@ import requestProgress from 'request-progress'
 import StreamZip from 'node-stream-zip'
 import fsextra from 'fs-extra'
 
-import config from '../../config'
+import config from '../../../config'
 
-import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
+import section from '../../cssModules/section.scss'
+import content from '../../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -150,7 +150,7 @@ let Decrypt9 = React.createClass({
   },
   next() {
     if (this.state.finished) {
-      this.props.router.push('/checkParentalControls')
+      this.props.router.push('/ctrtransfer/setup')
     } else {
       // do nothing if not finished...
     }
