@@ -10,7 +10,9 @@ AERGIA is an electron application that is meant as both a guide, and an automato
 
 ## WIP
 
-This project is very much a work in progress. Styling and being pretty has come secondary to getting functionality working - although we would love your help in either case.
+**tl;dr - This project is very much a work in progress. Don't use this unless you know what you're doing. Don't complain to me if it bricks your 3ds or causes armageddon.**
+
+Styling and being pretty has come secondary to getting functionality working - although we would love your help in either case.
 
 It currently supports selecting your device model, region, version. It then goes and downloads everything you need for soundhax, the homebrew launcher, decrypt9 and downgrading to 2.1
 
