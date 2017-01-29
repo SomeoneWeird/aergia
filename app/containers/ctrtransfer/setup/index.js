@@ -43,7 +43,14 @@ let CTRTransfer = React.createClass({
       this.downloadCTRfile()
     })
   },
+  setFinished() {
+    this.setState({
+      ...this.state,
+      finished: true
+    })
+  },
   downloadCTRfile() {
+    // return this.setFinished()
     const magnetLink = magnetLinks[config.region] || magnetLinks.usa
     torrentClient.add(magnetLink, {
       path: os.tmpdir()
@@ -73,10 +80,7 @@ let CTRTransfer = React.createClass({
               if (err) {
                 return console.error(err)
               }
-              this.setState({
-                ...this.state,
-                finished: true
-              })
+              return this.setFinished()
             })
           })
         })
