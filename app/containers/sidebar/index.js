@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router'
 
 import open from 'open'
 
-import config from '../../config';
-
-import content from '../cssModules/content.scss';
-import layout from '../cssModules/layout.scss';
+import layout from '../cssModules/layout.scss'
 
 function openGithub () {
-  open('https://github.com/SomeoneWeird/aergia');
+  open('https://github.com/SomeoneWeird/aergia')
 }
 
 export default class sidebar extends Component {
-  constructor (props) {
-    super(props)
-    console.log(this)
-  }
   getName () {
-    console.log('path:', this.props.location.pathname)
     if (this.props.location.pathname === '/') {
       return
     }
@@ -49,7 +41,7 @@ export default class sidebar extends Component {
       </li>
     </span>
   }
-  render() {
+  render () {
     return (
       <div className={layout.sidebar + ' col-xs-1'}>
         <ul className={layout.sidebarLinks}>
@@ -61,9 +53,9 @@ export default class sidebar extends Component {
           <br />
           <br />
           <br />
-          <li><Link to="/credits">Credits</Link></li>
+          <li><Link to='/credits'>Credits</Link></li>
           <br />
-          <li><Link to="#" onClick={openGithub}>Github</Link></li>
+          <li><Link to='#' onClick={openGithub}>Github</Link></li>
         </ul>
       </div>
     )

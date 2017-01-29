@@ -2,9 +2,8 @@ import os from 'os'
 import path from 'path'
 import fs from 'fs'
 
-import { ipcRenderer } from 'electron';
-import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import React from 'react'
+import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 
 import request from 'request'
@@ -20,7 +19,7 @@ import content from '../../cssModules/content.scss'
 import styles from './index.css'
 
 let Decrypt9 = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {
       text: '',
       downloading: null,
@@ -28,7 +27,7 @@ let Decrypt9 = React.createClass({
       finished: false
     }
   },
-  componentDidMount() {
+  componentDidMount () {
     try {
       fs.mkdirSync(path.resolve(config.drive.mountPoint, 'files9'))
     } catch (e) {
@@ -140,7 +139,7 @@ let Decrypt9 = React.createClass({
       return <div className={content.largeTick}>✓</div>
     } else {
       return <div>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         <br />
         <br />
         <br />
@@ -148,14 +147,14 @@ let Decrypt9 = React.createClass({
       </div>
     }
   },
-  next() {
+  next () {
     if (this.state.finished) {
       this.props.router.push('/ctrtransfer/setup')
     } else {
       // do nothing if not finished...
     }
   },
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Decrypt9 Setup</h2>

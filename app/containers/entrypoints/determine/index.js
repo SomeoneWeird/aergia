@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router'
 import semver from 'semver'
 
 import config from '../../../config'
@@ -78,7 +78,7 @@ export default class determineEntrypoint extends Component {
       {this.getGameEntrypoints()}
     </div>
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Select Exploit</h2>

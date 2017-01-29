@@ -1,19 +1,5 @@
-import os from 'os'
-import path from 'path'
-import fs from 'fs'
-
-import { ipcRenderer } from 'electron';
-import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
-import { ScaleLoader } from 'halogen'
-
-import request from 'request'
-import requestProgress from 'request-progress'
-import StreamZip from 'node-stream-zip'
-import fsextra from 'fs-extra'
-import async from 'async'
-
-import config from '../../../config'
+import React from 'react'
+import { browserHistory } from 'react-router'
 
 import section from '../../cssModules/section.scss'
 import content from '../../cssModules/content.scss'
@@ -21,25 +7,22 @@ import content from '../../cssModules/content.scss'
 import styles from './index.css'
 
 let SoundHax = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {}
-  },
-  componentDidMount() {
-
   },
   getContent () {
     return <div>
       Launch CTR Transfer...
     </div>
   },
-  next() {
+  next () {
     if (this.state.finished) {
       this.props.router.push('/404')
     } else {
       // do nothing if not finished...
     }
   },
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>CTRTransfer Launch</h2>

@@ -2,14 +2,14 @@
  * Base webpack config used across other specific configs
  */
 
-import path from 'path';
-import validate from 'webpack-validator';
+import path from 'path'
+import validate from 'webpack-validator'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
 
 import {
   dependencies as externals
-} from './app/package.json';
+} from './app/package.json'
 
 export default validate({
   module: {
@@ -21,7 +21,7 @@ export default validate({
       test: /\.json$/,
       loader: 'json-loader'
     }, {
-      test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
+      test: /[/\\](node_modules|global)[/\\].*\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css')
     },
     {
@@ -67,4 +67,4 @@ export default validate({
   },
 
   target: 'web'
-});
+})

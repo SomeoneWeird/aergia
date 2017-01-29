@@ -1,10 +1,9 @@
-import os from 'os'
 import path from 'path'
 import fs from 'fs'
 
-import { ipcRenderer } from 'electron';
-import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { ipcRenderer } from 'electron'
+import React from 'react'
+import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 
 import request from 'request'
@@ -21,7 +20,7 @@ import content from '../../../cssModules/content.scss'
 import styles from './index.css'
 
 let SoundHax = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {
       text: '',
       downloading: null,
@@ -29,7 +28,7 @@ let SoundHax = React.createClass({
       finished: false
     }
   },
-  componentDidMount() {
+  componentDidMount () {
     this.downloadSoundhax()
   },
   downloadFile (filename, url, done) {
@@ -164,7 +163,7 @@ let SoundHax = React.createClass({
       return <div className={content.largeTick}>✓</div>
     } else {
       return <div className={styles.center}>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         <br />
         <br />
         <br />
@@ -172,14 +171,14 @@ let SoundHax = React.createClass({
       </div>
     }
   },
-  next() {
+  next () {
     if (this.state.finished) {
       this.props.router.push('/decrypt9/setup')
     } else {
       // do nothing if not finished...
     }
   },
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Soundhax Setup</h2>

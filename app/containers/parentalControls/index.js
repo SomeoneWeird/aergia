@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 
-import config from '../../config';
-
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -61,9 +59,9 @@ export default class parentalControls extends Component {
       case 1: {
         return <div>
           Do you have Parental Controls enabled?
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
           <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(false)}>No</div>
           <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(true)}>Yes</div>
         </div>
@@ -71,15 +69,15 @@ export default class parentalControls extends Component {
       case 2: {
         return <div>
           Please disable Parental Controls before going forward.
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
           <div className={`${content.button} ${content.buttonKeepText}`} onClick={this.goForward}>I have disabled parental controls</div>
         </div>
       }
     }
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Parental Controls</h2>

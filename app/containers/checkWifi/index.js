@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 
-import config from '../../config';
+import config from '../../config'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -70,9 +70,9 @@ export default class checkWifi extends Component {
       case 1: {
         return <div>
           Is your device connected to WiFi?
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
           <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(false)}>No</div>
           <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(true)}>Yes</div>
         </div>
@@ -80,15 +80,15 @@ export default class checkWifi extends Component {
       case 2: {
         return <div>
           You need to connect to WiFi before you start..
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
           <div className={`${content.button} ${content.buttonKeepText}`} onClick={this.goForward}>I have setup WiFi on my device</div>
         </div>
       }
     }
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>WiFi</h2>

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 
 import otherapp from 'otherapp'
 
-import config from '../../config';
+import config from '../../config'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -58,13 +58,13 @@ export default class selectVersion extends Component {
   getContent () {
     if (this.state.loading) {
       return <div className={styles.center}>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         <br />
         <br />
         <br />
         Loading versions...
       </div>
-    } else  {
+    } else {
       return <div className={`${styles.center} ${styles.select}`}>
         <select value={this.state.selected} onChange={this.handleChange}>
           {this.getVersions()}
@@ -72,7 +72,7 @@ export default class selectVersion extends Component {
       </div>
     }
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>{ config.model === 'o2ds' ? '2DS' : '3DS' } Version</h2>

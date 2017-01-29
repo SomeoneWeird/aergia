@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 
-import config from '../../config';
+import config from '../../config'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 const images = {
   twoDS: require('./images/2ds.png'),
@@ -16,12 +16,9 @@ const images = {
 }
 
 class Device extends Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     return (
-      <div className={section.device + " col-xs-4"}>
+      <div className={section.device + ' col-xs-4'}>
         <div onClick={this.props.onClick} className={section.deviceName}>{this.props.name}</div>
         <img onClick={this.props.onClick} src={this.props.image} />
       </div>
@@ -89,10 +86,10 @@ export default class selectModel extends Component {
   getIsXLContent () {
     if (config.model === 'n3ds') {
       return <div className={section.device + ' row'}>
-        <div className={section.device + " col-xs-6"}>
+        <div className={section.device + ' col-xs-6'}>
           <img onClick={this.setXL(true)} src={images.n3DSXL} />
         </div>
-        <div className={section.device + " col-xs-6"}>
+        <div className={section.device + ' col-xs-6'}>
           <img onClick={this.setXL(false)} src={images.n3DS} />
         </div>
       </div>
@@ -106,7 +103,7 @@ export default class selectModel extends Component {
   getContent () {
     switch (this.state.step) {
       case 1: {
-        return <div className="row middle-xs">
+        return <div className='row middle-xs'>
           <Device onClick={this.setModel('n3ds')} name='New 3DS' image={images.n3DS} />
           <Device onClick={this.setModel('o3ds')} name='Old 3DS' image={images.o3DS} />
           <Device onClick={this.setModel('o2ds')} name='2DS' image={images.twoDS} />
@@ -120,7 +117,7 @@ export default class selectModel extends Component {
       }
     }
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Model Selection</h2>

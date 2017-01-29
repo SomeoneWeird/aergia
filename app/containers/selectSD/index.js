@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-import { ipcRenderer } from 'electron';
-import { Link, browserHistory } from 'react-router';
+import { ipcRenderer } from 'electron'
+import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 
 import bytes from 'bytes'
@@ -20,13 +20,13 @@ try {
 } catch (e) {}
 
 let selectSD = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {
       drives: [],
       loading: true
     }
   },
-  gotDriveList(event, drives) {
+  gotDriveList (event, drives) {
     drives = JSON.parse(drives)
     drives = drives.filter(function (drive) {
       return drive.system === false && drive.protected === false && drive.mountpoints.length
@@ -43,11 +43,11 @@ let selectSD = React.createClass({
       drives
     })
   },
-  componentDidMount() {
+  componentDidMount () {
     ipcRenderer.on('driveListReply', this.gotDriveList)
     this.processDrives()
   },
-  componentWillUnmount() {
+  componentWillUnmount () {
     ipcRenderer.removeListener('driveListReply', this.gotDriveList)
   },
   processDrives () {
@@ -60,7 +60,7 @@ let selectSD = React.createClass({
   },
   getDrives () {
     return this.state.drives.map((drive, i) => {
-      return <span className={`${content.button} ${content.buttonKeepText}`} key={drive.mountPoint} onClick={this.setDrive(drive)}>({i+1}) {drive.description} @ {drive.mountPoint} ({drive.size})</span>
+      return <span className={`${content.button} ${content.buttonKeepText}`} key={drive.mountPoint} onClick={this.setDrive(drive)}>({i + 1}) {drive.description} @ {drive.mountPoint} ({drive.size})</span>
     })
   },
   setDrive (drive) {
@@ -74,7 +74,7 @@ let selectSD = React.createClass({
 
     if (this.state.loading) {
       return <div>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         Loading drives...
       </div>
     } else if (drives.length) {
@@ -94,7 +94,7 @@ let selectSD = React.createClass({
       </div>
     }
   },
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>SD Card Selection</h2>

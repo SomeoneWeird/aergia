@@ -1,10 +1,10 @@
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import React from 'react'
+import { Route, IndexRoute } from 'react-router'
 
-import App from './containers/App';
+import App from './containers/App'
 import AppNotFound from './containers/AppNotFound'
 
-import HomePage from './containers/home';
+import HomePage from './containers/home'
 
 import SelectSD from './containers/selectSD'
 
@@ -31,36 +31,36 @@ import CTRTransferSetup from './containers/ctrtransfer/setup'
 import CTRTransferLaunch from './containers/ctrtransfer/launch'
 
 export default (
-  <Route path="/" component={App}>
+  <Route path='/' component={App}>
     <IndexRoute component={HomePage} />
 
-    <Route path="/config/model" component={SelectModel} />
-    <Route path="/config/region" component={SelectRegion} />
-    <Route path="/config/version" component={SelectVersion} />
+    <Route path='/config/model' component={SelectModel} />
+    <Route path='/config/region' component={SelectRegion} />
+    <Route path='/config/version' component={SelectVersion} />
 
-    <Route path="/selectsd" component={SelectSD} />
+    <Route path='/selectsd' component={SelectSD} />
 
-    <Route path="/entry/determine" component={DetermineEntry} />
+    <Route path='/entry/determine' component={DetermineEntry} />
 
-    <Route path="/getstarted" component={GetStarted} />
+    <Route path='/getstarted' component={GetStarted} />
 
-    <Route path="/entry/soundhax/setup" component={SoundHaxSetup} />
+    <Route path='/entry/soundhax/setup' component={SoundHaxSetup} />
 
-    <Route path="/decrypt9/setup" component={Decrypt9Setup} />
+    <Route path='/decrypt9/setup' component={Decrypt9Setup} />
 
-    <Route path="/checkParentalControls" component={ParentalControls} />
-    <Route path="/checkWifi" component={CheckWifi} />
-    <Route path="/2dsbrickwarning" component={TwoDSBrickWarning} />
-    <Route path="/n3dsbrickwarning" component={New3DSBrickWarning} />
+    <Route path='/checkParentalControls' component={ParentalControls} />
+    <Route path='/checkWifi' component={CheckWifi} />
+    <Route path='/2dsbrickwarning' component={TwoDSBrickWarning} />
+    <Route path='/n3dsbrickwarning' component={New3DSBrickWarning} />
 
-    <Route path="/ctrtransfer/setup" component={CTRTransferSetup} />
+    <Route path='/ctrtransfer/setup' component={CTRTransferSetup} />
 
-    <Route path="/entry/soundhax/launch" component={SoundHaxLaunch} />
+    <Route path='/entry/soundhax/launch' component={SoundHaxLaunch} />
 
-    <Route path="/decrypt9/launch" component={Decrypt9Launch} />
+    <Route path='/decrypt9/launch' component={Decrypt9Launch} />
 
-    <Route path="/ctrtransfer/launch" component={CTRTransferLaunch} />
+    <Route path='/ctrtransfer/launch' component={CTRTransferLaunch} />
 
-    <Route path="*" component={AppNotFound}/>
+    <Route path='*' component={AppNotFound} />
   </Route>
-);
+)

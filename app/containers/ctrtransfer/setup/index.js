@@ -1,9 +1,8 @@
 import os from 'os'
 import path from 'path'
-import fs from 'fs'
 
-import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import React from 'react'
+import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 
 import Webtorrent from 'webtorrent'
@@ -27,7 +26,7 @@ const zipName = '2.1.0-4U_ctrtransfer_o3ds.zip'
 const torrentClient = new Webtorrent()
 
 let CTRTransfer = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {
       extracting: false,
       downloading: null,
@@ -35,7 +34,7 @@ let CTRTransfer = React.createClass({
       finished: false
     }
   },
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       ...this.state,
       downloading: `CTR Transfer File (${config.region})`
@@ -43,13 +42,13 @@ let CTRTransfer = React.createClass({
       this.downloadCTRfile()
     })
   },
-  setFinished() {
+  setFinished () {
     this.setState({
       ...this.state,
       finished: true
     })
   },
-  downloadCTRfile() {
+  downloadCTRfile () {
     // return this.setFinished()
     const magnetLink = magnetLinks[config.region] || magnetLinks.usa
     torrentClient.add(magnetLink, {
@@ -94,7 +93,7 @@ let CTRTransfer = React.createClass({
       return <div className={content.largeTick}>✓</div>
     } else if (this.state.extracting === true) {
       return <div>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         <br />
         <br />
         <br />
@@ -102,7 +101,7 @@ let CTRTransfer = React.createClass({
       </div>
     } else {
       return <div>
-        <ScaleLoader color="#000000" width="20px" height="120px" />
+        <ScaleLoader color='#000000' width='20px' height='120px' />
         <br />
         <br />
         <br />
@@ -110,14 +109,14 @@ let CTRTransfer = React.createClass({
       </div>
     }
   },
-  next() {
+  next () {
     if (this.state.finished) {
       this.props.router.push('/checkParentalControls')
     } else {
       // do nothing if not finished...
     }
   },
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>CTR Transfer Setup</h2>

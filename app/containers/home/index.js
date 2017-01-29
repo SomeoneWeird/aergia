@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link } from 'react-router';
+import { Link } from 'react-router'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 export default class HomePage extends Component {
-  render() {
+  render () {
     return (
       <section className={section.intro}>
         <h2 className={section.title}>Aergia</h2>
@@ -14,9 +14,9 @@ export default class HomePage extends Component {
           <p>An interactive guide to A9LH + Luma on your 3DS</p>
           <br />
           <br />
-          <Link className={content.button} to="/config/model">Start</Link>
+          <Link className={content.button} to='/config/model'>Start</Link>
         </div>
       </section>
-    );
+    )
   }
 }

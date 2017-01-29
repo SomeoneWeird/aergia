@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router'
 
-import config from '../../config';
+import config from '../../config'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
 export default class New3DSBrickWarning extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       countdown: 10
@@ -54,7 +54,7 @@ export default class New3DSBrickWarning extends Component {
       {this.getCountdown()}
     </div>
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>New 3DS Brick Warning</h2>

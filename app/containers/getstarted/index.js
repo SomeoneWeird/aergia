@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router'
 
 import config from '../../config'
 
-import section from '../cssModules/section.scss';
-import content from '../cssModules/content.scss';
+import section from '../cssModules/section.scss'
+import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -67,7 +67,7 @@ export default class getStarted extends Component {
           We're going to download some exploits, set up and files,
           <br />
           <br />
-          and then configure your (micro)SD card so it has
+          and then configure your (micro)SD card so it has
           <br />
           <br />
           all the necessary information on it for the next step.
@@ -114,7 +114,7 @@ export default class getStarted extends Component {
       }
     }
   }
-  render() {
+  render () {
     return (
       <section>
         <h2 className={section.title}>Let's get started!</h2>
@@ -126,6 +126,6 @@ export default class getStarted extends Component {
           <Link style={{display: this.state.step === totalSteps ? 'none' : ''}} className={`${content.button} ${content.buttonNext}`} onClick={this.goForward}>Next</Link>
         </div>
       </section>
-    );
+    )
   }
 }
