@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { Link } from 'react-router';
 
@@ -15,6 +17,9 @@ export default class HomePage extends Component {
           <br />
           <br />
           <Link className={content.button} to="/config/model">Start</Link>
+          <MuiThemeProvider>
+            <RaisedButton label="Start" to="/config/model" />
+          </MuiThemeProvider>
         </div>
       </section>
     );

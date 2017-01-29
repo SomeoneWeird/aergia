@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Sidebar from './sidebar';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Header from './header';
 
 export default class App extends Component {
   props: {
@@ -13,10 +15,12 @@ export default class App extends Component {
   render() {
     return (
       <div className="row">
-        <Sidebar location={this.props.location} />
-        <div className="appBody col-xs-11">
-          {this.props.children}
-        </div>
+        <MuiThemeProvider>
+          <Header />
+        </MuiThemeProvider>
+          <div className="appBody col-xs-11">
+            {this.props.children}
+          </div>
       </div>
     );
   }
