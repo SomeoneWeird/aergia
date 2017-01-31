@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 import semver from 'semver'
 
 import config from '../../../config'
 
 import section from '../../cssModules/section.scss'
-import content from '../../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -47,7 +47,7 @@ export default class determineEntrypoint extends Component {
   getEntryLinks (entrypoints) {
     return entrypoints.map((name) => {
       return <div key={name} className={styles.entrypointButton}>
-        <Link className={`${content.button}`} onClick={this.setEntrypoint(name)}>{name}</Link>
+        <RaisedButton label={name} onClick={this.setEntrypoint(name)} />
       </div>
     })
   }
@@ -86,7 +86,7 @@ export default class determineEntrypoint extends Component {
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
         </div>
       </section>
     )

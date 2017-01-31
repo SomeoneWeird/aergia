@@ -3,6 +3,7 @@ import React from 'react'
 import { ipcRenderer } from 'electron'
 import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import bytes from 'bytes'
 
@@ -83,14 +84,14 @@ let selectSD = React.createClass({
         {drives}
         <br />
         <br />
-        <div className={content.button} onClick={this.processDrives}>Refresh</div>
+        <RaisedButton label='Refresh' onClick={this.processDrives} />
       </div>
     } else {
       return <div>
         Oops, can't detect any valid drives.
         <br />
         <br />
-        <div className={content.button} onClick={this.processDrives}>Refresh</div>
+        <RaisedButton label='Refresh' onClick={this.processDrives} />
       </div>
     }
   },
@@ -102,10 +103,10 @@ let selectSD = React.createClass({
           {this.getContent()}
           <br />
           <br />
-          hacks: <div className={content.button} onClick={this.setDrive({ description: folder, mountPoint: folder })}>use {folder}</div>
+          hacks: <RaisedButton label={`use ${folder}`} onClick={this.setDrive({ description: folder, mountPoint: folder })} />
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
         </div>
       </section>
     )

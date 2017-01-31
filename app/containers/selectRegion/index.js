@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import config from '../../config'
 
 import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
 
 const flags = {
   usa: require('./images/usa.jpg'),
@@ -40,7 +40,7 @@ export default class selectRegion extends Component {
           </div>
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
         </div>
       </section>
     )

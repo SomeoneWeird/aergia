@@ -5,6 +5,7 @@ import fs from 'fs'
 import React from 'react'
 import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import request from 'request'
 import requestProgress from 'request-progress'
@@ -162,8 +163,8 @@ let Decrypt9 = React.createClass({
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <div className={`${content.button} ${content.buttonNext} ${this.state.finished ? '' : content.buttonDisabled}`} onClick={this.next}>Next</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
+          <RaisedButton label='Next' disabled={!this.state.finished} className={content.buttonNext} onClick={this.next} />
         </div>
       </section>
     )

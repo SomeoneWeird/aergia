@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import { Link } from 'react-router'
+import React, { Component } from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
 
 export default class HomePage extends Component {
+  constructor (props) {
+    super(props)
+    this.next = this.next.bind(this)
+  }
+  next () {
+    this.props.router.push('/config/model')
+  }
   render () {
     return (
       <section className={section.intro}>
@@ -16,10 +19,7 @@ export default class HomePage extends Component {
           <p>An interactive guide to A9LH + Luma on your 3DS</p>
           <br />
           <br />
-          <Link className={content.button} to="/config/model">Start</Link>
-          <MuiThemeProvider>
-            <RaisedButton label="Start" to="/config/model" />
-          </MuiThemeProvider>
+          <RaisedButton label='Start' onClick={this.next} />
         </div>
       </section>
     )

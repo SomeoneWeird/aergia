@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import config from '../../config'
 
 import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -15,6 +14,7 @@ export default class New3DSBrickWarning extends Component {
     this.state = {
       countdown: 10
     }
+    this.goForward = this.goForward.bind(this)
     const next = () => {
       if (this.state.countdown === 0) {
         return
@@ -36,6 +36,9 @@ export default class New3DSBrickWarning extends Component {
       return <b>{this.state.countdown}</b>
     }
   }
+  goForward () {
+    this.props.router.push(`/entry/${config.entrypoint}/launch`)
+  }
   getContent () {
     return <div>
       You can brick your New 3DS if you <b>Close the Lid</b> while you're on a downgraded firmware.
@@ -48,7 +51,7 @@ export default class New3DSBrickWarning extends Component {
       <br />
       <br />
       <br />
-      <Link className={`${content.button} ${content.buttonKeepText} ${this.state.countdown === 0 ? '' : content.buttonDisabled}`} to={`/entry/${config.entrypoint}/launch`}>I will never close my devices lid while downgraded</Link>
+      <RaisedButton label='I will never close my devices lid while downgraded' disabled={this.state.countdown !== 0} onClick={this.goForward} />
       <br />
       <br />
       {this.getCountdown()}
@@ -62,7 +65,7 @@ export default class New3DSBrickWarning extends Component {
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
+          <RaisedButton label='Back' onClick={this.goBack} />
         </div>
       </section>
     )

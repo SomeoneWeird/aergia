@@ -2,8 +2,9 @@ import os from 'os'
 import path from 'path'
 
 import React from 'react'
-import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
+import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import Webtorrent from 'webtorrent'
 import StreamZip from 'node-stream-zip'
@@ -49,7 +50,7 @@ let CTRTransfer = React.createClass({
     })
   },
   downloadCTRfile () {
-    // return this.setFinished()
+    return this.setFinished()
     const magnetLink = magnetLinks[config.region] || magnetLinks.usa
     torrentClient.add(magnetLink, {
       path: os.tmpdir()
@@ -124,8 +125,8 @@ let CTRTransfer = React.createClass({
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <div className={`${content.button} ${content.buttonNext} ${this.state.finished ? '' : content.buttonDisabled}`} onClick={this.next}>Next</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
+          <RaisedButton label='Next' disabled={!this.state.finished} className={content.buttonNext} onClick={this.next} />
         </div>
       </section>
     )

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import section from '../cssModules/section.scss'
-import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
@@ -62,8 +62,8 @@ export default class parentalControls extends Component {
           <br />
           <br />
           <br />
-          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(false)}>No</div>
-          <div className={`${content.button} ${styles.button}`} onClick={this.isEnabled(true)}>Yes</div>
+          <RaisedButton className={styles.button} label='No' onClick={this.isEnabled(false)} />
+          <RaisedButton className={styles.button} label='Yes' onClick={this.isEnabled(true)} />
         </div>
       }
       case 2: {
@@ -72,7 +72,7 @@ export default class parentalControls extends Component {
           <br />
           <br />
           <br />
-          <div className={`${content.button} ${content.buttonKeepText}`} onClick={this.goForward}>I have disabled parental controls</div>
+          <RaisedButton label='I have disabled parental controls' onClick={this.goForward} />
         </div>
       }
     }
@@ -85,7 +85,7 @@ export default class parentalControls extends Component {
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={this.goBack}>Back</div>
+          <RaisedButton label='Back' onClick={this.goBack} />
         </div>
       </section>
     )

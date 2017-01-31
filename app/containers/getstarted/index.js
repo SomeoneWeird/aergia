@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import config from '../../config'
 
@@ -109,7 +110,7 @@ export default class getStarted extends Component {
           you won't lose access to your new CFW!
           <br />
           <br />
-          <div className={content.button} onClick={this.goForward}>Start</div>
+          <RaisedButton label='Start' onClick={this.goForward} />
         </div>
       }
     }
@@ -122,8 +123,8 @@ export default class getStarted extends Component {
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={this.goBack}>Back</div>
-          <Link style={{display: this.state.step === totalSteps ? 'none' : ''}} className={`${content.button} ${content.buttonNext}`} onClick={this.goForward}>Next</Link>
+          <RaisedButton label='Back' onClick={this.goBack} />
+          <RaisedButton label='Next' style={{display: this.state.step === totalSteps ? 'none' : ''}} className={content.buttonNext} onClick={this.goForward} />
         </div>
       </section>
     )

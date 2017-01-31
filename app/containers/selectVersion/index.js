@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-import { Link, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import otherapp from 'otherapp'
 
@@ -21,6 +22,7 @@ export default class selectVersion extends Component {
       selected: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.next = this.next.bind(this)
   }
   componentWillMount () {
     otherapp.versions((err, versions) => {
@@ -80,8 +82,8 @@ export default class selectVersion extends Component {
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <Link className={`${content.button} ${content.buttonNext}`} to={'/entry/determine'}>Next</Link>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
+          <RaisedButton className={content.buttonNext} label='Next' onClick={this.next} />
         </div>
       </section>
     )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import section from '../../../cssModules/section.scss'
 import content from '../../../cssModules/content.scss'
@@ -23,8 +24,8 @@ let SoundHax = React.createClass({
           {this.getContent()}
         </div>
         <div className={section.navigation}>
-          <div className={content.button} onClick={browserHistory.goBack}>Back</div>
-          <div className={`${content.button} ${content.buttonNext}`} onClick={this.next}>Next</div>
+          <RaisedButton label='Back' onClick={browserHistory.goBack} />
+          <RaisedButton className={content.buttonNext} label='Next' onClick={this.next} />
         </div>
       </section>
     )
