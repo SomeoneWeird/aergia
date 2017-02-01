@@ -5,7 +5,11 @@
 }
 
 .content {
-  padding-top: 5%;
+  margin-top: -2%;
+}
+
+.stepContent {
+  margin-top: 5%;
 }
 
 .steps {

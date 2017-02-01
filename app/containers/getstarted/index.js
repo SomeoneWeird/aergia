@@ -3,6 +3,12 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import {
+  Step,
+  Stepper,
+  StepButton
+} from 'material-ui/Stepper'
+
 import config from '../../config'
 
 import section from '../cssModules/section.scss'
@@ -10,19 +16,19 @@ import content from '../cssModules/content.scss'
 
 import styles from './index.css'
 
-const totalSteps = 5
+const totalSteps = 4
 
 export default class getStarted extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      step: 1
+      step: 0
     }
     this.goBack = this.goBack.bind(this)
     this.goForward = this.goForward.bind(this)
   }
   goBack () {
-    if (this.state.step === 1) {
+    if (this.state.step === 0) {
       // go back
       return browserHistory.goBack()
     } else {
@@ -42,29 +48,18 @@ export default class getStarted extends Component {
       })
     }
   }
-  getContent () {
+  getStepContent () {
     switch (this.state.step) {
-      case 1: {
+      case 0: {
         return <div>
-          <p>There are 4 main parts to this guide</p>
+          There are 4 main parts to this guide
           <br />
           <br />
-          <div className={styles.steps}>
-            <b>(1)</b> SD Card Setup <br />
-            <br />
-            <b>(2)</b> Downgrading your device <br />
-            <br />
-            <b>(3)</b> Installing CFW <br />
-            <br />
-            <b>(4)</b> Finalising installation
-          </div>
+          Here, we'll take you through what we're going to do..
         </div>
       }
-      case 2: {
+      case 1: {
         return <div>
-          <h3>Step 1) SD Card Setup</h3>
-          <br />
-          <br />
           We're going to download some exploits, set up and files,
           <br />
           <br />
@@ -74,36 +69,27 @@ export default class getStarted extends Component {
           all the necessary information on it for the next step.
         </div>
       }
-      case 3: {
+      case 2: {
         return <div>
-          <h3>Step 2) Downgrading your device</h3>
-          <br />
-          <br />
           We're going to downgrade your device from {config.version} to version 2.1
           <br />
           <br />
-          This allows us to access a much older exploit we use
+          This allows us to access a much older exploit we use
           <br />
           <br />
           to grab a unique file out of protected system memory.
         </div>
       }
-      case 4: {
+      case 3: {
         return <div>
-          <h3>Step 3) Installing CFW</h3>
-          <br />
-          <br />
           In this step we'll actually install your Custom Firmware,
           <br />
           <br />
           then get you back safely to the latest firmware version
         </div>
       }
-      case 5: {
+      case 4: {
         return <div>
-          <h3>Step 4) Finalising installation</h3>
-          <br />
-          <br />
           Here we will ensure that even when you update your system
           <br />
           <br />
@@ -114,6 +100,43 @@ export default class getStarted extends Component {
         </div>
       }
     }
+  }
+  getContent () {
+    return <div>
+      <Stepper 
+        activeStep={this.state.step}
+        linear={false}
+      >
+        <Step>
+          <StepButton onTouchTap={() => this.setState({step: 0})}>
+            Get Started
+          </StepButton>
+        </Step>
+        <Step>
+          <StepButton onTouchTap={() => this.setState({step: 1})}>
+            SD Card Setup
+          </StepButton>
+        </Step>
+        <Step>
+          <StepButton onTouchTap={() => this.setState({step: 1})}>
+            Downgrading your device
+          </StepButton>
+        </Step>
+        <Step>
+          <StepButton onTouchTap={() => this.setState({step: 1})}>
+            Installing CFW
+          </StepButton>
+        </Step>
+        <Step>
+          <StepButton onTouchTap={() => this.setState({step: 1})}>
+            Finalising installation
+          </StepButton>
+        </Step>
+      </Stepper>
+      <div className={styles.stepContent}>
+        {this.getStepContent()}
+      </div>
+    </div>
   }
   render () {
     return (
