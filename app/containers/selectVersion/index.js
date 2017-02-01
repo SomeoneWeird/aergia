@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { ScaleLoader } from 'halogen'
 import RaisedButton from 'material-ui/RaisedButton'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 
 import otherapp from 'otherapp'
 
@@ -37,8 +39,8 @@ export default class selectVersion extends Component {
       this.setVersion(this.possibleValues[0])
     })
   }
-  handleChange (event) {
-    this.setVersion(event.target.value)
+  handleChange (event, index, value) {
+    this.setVersion(value)
   }
   setVersion (version) {
     this.setState({
@@ -54,7 +56,7 @@ export default class selectVersion extends Component {
   }
   getVersions () {
     return this.possibleValues.map(v => {
-      return <option key={v} value={v}>{v}</option>
+      return <MenuItem key={v} value={v} primaryText={v} />
     })
   }
   getContent () {
@@ -68,9 +70,14 @@ export default class selectVersion extends Component {
       </div>
     } else {
       return <div className={`${styles.center} ${styles.select}`}>
-        <select value={this.state.selected} onChange={this.handleChange}>
+        <SelectField
+          floatingLabelText="Version"
+          value={this.state.selected}
+          onChange={this.handleChange}
+          maxHeight={200}
+        >
           {this.getVersions()}
-        </select>
+        </SelectField>
       </div>
     }
   }
