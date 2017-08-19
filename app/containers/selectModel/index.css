@@ -1,3 +1,7 @@
 .text {
   text-align: center;
 }
+
+.deviceImage {
+  width: 70%;
+}
