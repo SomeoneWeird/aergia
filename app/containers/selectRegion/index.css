@@ -1,0 +1,7 @@
+.flag {
+  width: auto;
+  max-height: 100px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 1px 1px 1px #d3d3d3;
+}

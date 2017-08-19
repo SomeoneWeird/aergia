@@ -5,39 +5,53 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 import config from '../../config'
 
+import s from './index.css'
+
 import section from '../cssModules/section.scss'
 
 const flags = {
   usa: require('./images/usa.jpg'),
   eur: require('./images/eur.jpg'),
   jpn: require('./images/jpn.jpg'),
-  kor: require('./images/kor.jpg')
+  kor: require('./images/kor.png')
+}
+
+class Flag extends Component {
+  constructor (props) {
+    super(props)
+  }
+  render () {
+    let { region } = this.props
+
+    return (
+      <div className={'col-xs-3'}>
+        <img
+          className={s.flag}
+          src={flags[region]}
+          onClick={() => {
+            config.region = region
+            this.props.router.push('/config/version')
+          }}
+        />
+      </div>
+    )
+  }
 }
 
 export default class selectRegion extends Component {
-  setRegion (region) {
-    return () => {
-      config.region = region
-      this.props.router.push('/config/version')
-    }
-  }
   render () {
     return (
       <section>
         <h2 className={section.title}>Select which region your DS is</h2>
+        <br />
+        <br />
+        <br />
+        <br />
         <div className='row'>
-          <div className={section.flagItem + ' col-xs-6'}>
-            <img onClick={this.setRegion('USA')} src={flags.usa} />
-          </div>
-          <div className={section.flagItem + ' col-xs-6'}>
-            <img onClick={this.setRegion('EUR')} src={flags.eur} />
-          </div>
-          <div className={section.flagItem + ' col-xs-6'}>
-            <img onClick={this.setRegion('JPN')} src={flags.jpn} />
-          </div>
-          <div className={section.flagItem + ' col-xs-6'}>
-            <img onClick={this.setRegion('KOR')} src={flags.kor} />
-          </div>
+          <Flag router={this.props.router} region='usa' />
+          <Flag router={this.props.router} region='eur' />
+          <Flag router={this.props.router} region='jpn' />
+          <Flag router={this.props.router} region='kor' />
         </div>
         <div className={section.navigation}>
           <RaisedButton label='Back' onClick={browserHistory.goBack} />
