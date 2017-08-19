@@ -9,6 +9,5 @@
     "email": "adam@boxxen.org"
   },
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
