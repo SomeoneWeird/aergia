@@ -1,12 +1,12 @@
 <p align="center">
 	<img src="./resources/logo.png">
 	<br/>
-	An interactive guide to A9LH + Luma on your 3DS
+	An interactive guide to B9S + Luma on your 3DS
 </p>
 
 ## What is it?
 
-AERGIA is an electron application that is meant as both a guide, and an automator for installing A9LH onto your 3DS. It will guide you through steps, as well as automate the creation and setup of your (micro)SD card.
+AERGIA is an electron application that is meant as both a guide, and an automator for installing B9S onto your 3DS. It will guide you through steps, as well as automate the creation and setup of your (micro)SD card.
 
 ## WIP
 
@@ -59,7 +59,7 @@ You can clone the repo, run `npm install` (or use `yarn`) and then run `npm run 
 - [x] Decrypt9 setup
 - [x] CTRTransfer firmware download
 - [ ] Walkthrough for downgrading to 2.1 (+verify NAND dump?)
-- [ ] A9LH step w/ file downloads
+- [ ] B9S step w/ file downloads
 - [ ] Fix react components being still active when unmounted
 - [ ] Injecting FBI + setup
 - [ ] SD card cleanup

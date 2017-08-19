@@ -16,7 +16,7 @@ export default class HomePage extends Component {
       <section className={section.intro}>
         <h2 className={section.title}>Aergia</h2>
         <div className={section.content}>
-          <p>An interactive guide to A9LH + Luma on your 3DS</p>
+          <p>An interactive guide to B9S + Luma on your 3DS</p>
           <br />
           <br />
           <RaisedButton label='Start' onClick={this.next} />
