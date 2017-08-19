@@ -115,14 +115,14 @@ export default class selectModel extends Component {
   getContent () {
     switch (this.state.step) {
       case 1: {
-        return <div className='row middle-xs'>
+        return <div className={'row'}>
           <Device onClick={this.setModel('n3ds')} model='n3ds' />
           <Device onClick={this.setModel('o3ds')} model='o3ds' />
           <Device onClick={this.setModel('o2ds')} model='2ds' />
         </div>
       }
       case 2: {
-        return <div className={section.device + ' row'}>
+        return <div className={s.leftPadding + ' row'}>
           <Device onClick={this.setXL(true)} model={config.model} XL={true} />
           <Device onClick={this.setXL(false)} model={config.model} XL={false}/>
         </div>

@@ -5,3 +5,7 @@
 .deviceImage {
   width: 70%;
 }
+
+.leftPadding {
+  padding-left: 25%;
+}
