@@ -84,7 +84,7 @@ export default class selectVersion extends Component {
   render () {
     return (
       <section>
-        <h2 className={section.title}>{ config.model === 'o2ds' ? '2DS' : '3DS' } Version</h2>
+        <h2 className={section.title}>{ config.model === '2ds' ? '2DS' : '3DS' } Version</h2>
         <div className={section.content}>
           {this.getContent()}
         </div>

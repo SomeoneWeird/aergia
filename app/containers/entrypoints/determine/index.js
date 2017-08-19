@@ -21,7 +21,7 @@ const entrypoints = {
       'soundhax'
     ]
   },
-  o2ds: {
+  '2ds': {
     '>=9.0.0 <=11.2.0': [
       'soundhax'
     ]

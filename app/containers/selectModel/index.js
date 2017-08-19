@@ -70,7 +70,7 @@ export default class selectModel extends Component {
     return () => {
       config.model = model
 
-      if (model === 'o2ds') {
+      if (model === '2ds') {
         // Skip next screen if device is a 2DS
         // they don't have XL models
         config.XL = false
@@ -118,7 +118,7 @@ export default class selectModel extends Component {
         return <div className={'row'}>
           <Device onClick={this.setModel('n3ds')} model='n3ds' />
           <Device onClick={this.setModel('o3ds')} model='o3ds' />
-          <Device onClick={this.setModel('o2ds')} model='2ds' />
+          <Device onClick={this.setModel('2ds')} model='2ds' />
         </div>
       }
       case 2: {
