@@ -4,8 +4,8 @@ import fs from 'fs'
 
 import React from 'react'
 import { browserHistory } from 'react-router'
-import { ScaleLoader } from 'halogen'
 import RaisedButton from 'material-ui/RaisedButton'
+import CircularProgress from 'material-ui/CircularProgress'
 
 import request from 'request'
 import requestProgress from 'request-progress'
@@ -140,7 +140,7 @@ let Decrypt9 = React.createClass({
       return <div className={content.largeTick}>✓</div>
     } else {
       return <div>
-        <ScaleLoader color='#000000' width='20px' height='120px' />
+        <CircularProgress size={80} thickness={5} />
         <br />
         <br />
         <br />

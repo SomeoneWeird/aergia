@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
 import { browserHistory } from 'react-router'
-import { ScaleLoader } from 'halogen'
 import RaisedButton from 'material-ui/RaisedButton'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import CircularProgress from 'material-ui/CircularProgress'
+
 
 import otherapp from 'otherapp'
 
@@ -62,7 +63,7 @@ export default class selectVersion extends Component {
   getContent () {
     if (this.state.loading) {
       return <div className={styles.center}>
-        <ScaleLoader color='#000000' width='20px' height='120px' />
+        <CircularProgress size={80} thickness={5} />
         <br />
         <br />
         <br />
