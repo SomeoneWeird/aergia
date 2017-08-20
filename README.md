@@ -16,19 +16,11 @@ Styling and being pretty has come secondary to getting functionality working - a
 
 It currently supports selecting your device model, region, version. It then goes and downloads everything you need for soundhax, the homebrew launcher, decrypt9 and downgrading to 2.1
 
-## Screenshots (Most likely outdated)
-
-<img src="./screenshots/1.png">
-<img src="./screenshots/2.png">
-<img src="./screenshots/3.png">
-<img src="./screenshots/4.png">
-<img src="./screenshots/5.png">
-
 ## Installation
 
 Currently no prebuilt images are available as this is still very much WIP.
 
-You can clone the repo, run `npm install` (or use `yarn`) and then run `npm run dev`
+You can clone the repo, run `npm install` and then run `npm run dev`
 
 ## TODOs
 
