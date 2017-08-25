@@ -25,31 +25,19 @@ You can clone the repo, run `npm install` and then run `npm run dev`
 ## TODOs
 
 ### Styling
-- [x] branding
-- [x] device images ???
-- [x] flag/region images
 - [ ] navigation foldout
 - [ ] build proper grid elements
 - [ ] UI elements and styling
 - [ ] notification styling
 - [ ] Style version select dropdown
-- [ ] Fix image glitches/sizes
 - [ ] Stop using hardcoded CSS everywhere?
 - [ ] Fix layout on prompt (wifi/PG) and brick screens
 
 ### Functional
 - [ ] Native app building
-- [x] Model selection (+ selecting XL model for o3ds/n3ds)
-- [x] Region selection
-- [x] Version selection
-- [x] Entrypoint detection based on model+region+version
 - [ ] Support game-based primary entrypoints
-- [x] Basic SD card selector
 - [ ] Better SD card selector
-- [x] Soundhax entrypoint file setup
 - [ ] Soundhax entrypoint usage (before or after decrypt9+ctr screens?)
-- [x] Decrypt9 setup
-- [x] CTRTransfer firmware download
 - [ ] Walkthrough for downgrading to 2.1 (+verify NAND dump?)
 - [ ] B9S step w/ file downloads
 - [ ] Fix react components being still active when unmounted
@@ -58,4 +46,3 @@ You can clone the repo, run `npm install` and then run `npm run dev`
 - [ ] "What next?"
 - [ ] Credits page
 - [ ] Auto update
-
