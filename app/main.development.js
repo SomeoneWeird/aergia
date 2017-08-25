@@ -2,6 +2,8 @@ import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron'
 import otherapp from 'otherapp'
 import Drive from 'drivelist'
 
+import threeSDSetup from './threeSDSetup'
+
 let menu
 let template
 let mainWindow = null
@@ -57,6 +59,9 @@ const installExtensions = async () => {
 
 app.on('ready', async () => {
   await installExtensions()
+
+  // hook events
+  threeSDSetup()
 
   mainWindow = new BrowserWindow({
     show: false,
